@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+            JAI - Favoritos
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <div *ngIf="listaFavoritos?.length > 0; else empty">
+            <ion-card ion-item *ngFor="let fav of listaFavoritos">
+                <ion-card-content>
+                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>
+                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>
+                    <p> Data: {{ dataFormatada(getDataFav(fav)) }},
+                        {{ getHoraInicioFav(fav) }}
+                    </p>
+                    <p text-wrap>Local: {{ getPredioFav(fav) }}</p>
+                    <p text-wrap>Sala: {{ getSalaFav(fav) }}</p>
+                </ion-card-content>
+                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">
+                    <ion-icon color="danger" name="trash"></ion-icon>
+                </button>
+            </ion-card>
+        </div>
+        <ng-template #empty>
+            <ion-card>
+                <ion-card-content>
+                    Nenhum favorito encontrado.
+                </ion-card-content>
+            </ion-card>
+        </ng-template>
+    </ion-list>
+</ion-content>

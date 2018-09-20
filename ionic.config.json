@@ -1,0 +1,7 @@
+{
+  "name": "prog-jai",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
