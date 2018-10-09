@@ -20,6 +20,7 @@
     <div>
         <ion-segment *ngIf="datas" [(ngModel)]="segmentData">
             <ion-segment-button value="Todos"> Todos </ion-segment-button>
+            <ion-segment-button value="Modulos"> Módulos </ion-segment-button>
             <ion-segment-button *ngFor="let data of datas" value="{{ data }}" (click)="putSegment(data)">
                 {{ dataFormatada(data) }}
             </ion-segment-button>
@@ -65,5 +66,10 @@
                 </ion-item-group>
             </ion-list>
         </ng-container>
+        <ion-list *ngSwitchCase="'Modulos'">
+            <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">
+                {{ agrupador.nome  }}
+            </button>
+        </ion-list>
     </div>
 </ion-content>

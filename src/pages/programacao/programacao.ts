@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { DatePipe } from '@angular/common';
 import { DataProvider } from "../../providers/data/data";
 import { FiltroPage } from './../filtro/filtro';
+import { ModulosPage } from './../modulos/modulos';
 
 @Component({
     selector: 'page-programacao',
@@ -23,6 +24,9 @@ export class ProgramacaoPage {
     dataSelecionada: string;
     localSelecinado: string;
     locais: any;
+    agrupadores: Observable<any>;
+    listaAgrupadores: any[];
+    listaModulosID: any[];
     constructor(public navCtrl: NavController, public http: HttpClient, private datepipe: DatePipe, 
         public data: DataProvider, public navParams: NavParams, private modalCtrl: ModalController) {
         //this.edicaoCorrente = this.http.get('http://localhost:5000/jai/avaliacaoRest/findEdicao');
@@ -33,7 +37,10 @@ export class ProgramacaoPage {
         this.locais = [];
         this.listaFavoritos = this.data.paramData;
         this.segmentData = "Todos";
+        this.listaAgrupadores = [];
+        this.listaModulosID = [];
         this.trabalhos = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhos');
+        //this.trabalhos = this.http.get('http://localhost:5000/jai/avaliacaoRest/findTrabalhos');
 
         this.trabalhos.subscribe(info => {
             for (let trabalho of info.trabalhos) {
@@ -48,6 +55,20 @@ export class ProgramacaoPage {
             }
             this.listaTrabalhosBkp = this.listaTrabalhos;
         });
+
+        //this.agrupadores = this.http.get('http://localhost:5000/jai/avaliacaoRest/findModulos');
+        this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
+
+        this.agrupadores.subscribe(info => {
+            for (let agrupador of info.modulos.agrupadores) {
+                for (let modulo of agrupador.modulos) {
+                    this.listaModulosID.push(modulo.id);
+                }
+                //console.log(modulo.modulos);
+                this.listaAgrupadores.push(agrupador);
+                //this.listaModulosID.push(modulo.)
+            }
+        })
 
         this.dataSelecionada = 'Todos';
         this.localSelecinado = 'Todos';
@@ -165,6 +186,10 @@ export class ProgramacaoPage {
                 return (this.getPredioTrabalho(item).toLowerCase().indexOf(this.localSelecinado.toLowerCase()) > -1);
             });
         }
+    }
+
+    paginaModulos(agrupador: any) {
+        this.navCtrl.push(ModulosPage, {agrupador: agrupador});    
     }
 
     ionViewDidLoad() {
