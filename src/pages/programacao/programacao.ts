@@ -189,7 +189,7 @@ export class ProgramacaoPage {
     }
 
     paginaModulos(agrupador: any) {
-        this.navCtrl.push(ModulosPage, {agrupador: agrupador});    
+        this.navCtrl.push(ModulosPage, {agrupador: agrupador, datas: this.datas});    
     }
 
     ionViewDidLoad() {

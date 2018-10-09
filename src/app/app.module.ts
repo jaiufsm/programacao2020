@@ -9,6 +9,7 @@ import { LinksPage } from '../pages/links/links';
 import { FavoritosPage } from './../pages/favoritos/favoritos';
 import { FiltroPage } from './../pages/filtro/filtro';
 import { ModulosPage } from './../pages/modulos/modulos';
+import { ModulosTrabalhosPage } from './../pages/modulos-trabalhos/modulos-trabalhos';
 
 //import { StatusBar } from '@ionic-native/status-bar';
 //import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,7 +25,8 @@ import { DataProvider } from '../providers/data/data';
     LinksPage,
     FavoritosPage,
     FiltroPage,
-    ModulosPage
+    ModulosPage,
+    ModulosTrabalhosPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { DataProvider } from '../providers/data/data';
     LinksPage,
     FavoritosPage,
     FiltroPage,
-    ModulosPage
+    ModulosPage,
+    ModulosTrabalhosPage
   ],
   providers: [
     //StatusBar,
