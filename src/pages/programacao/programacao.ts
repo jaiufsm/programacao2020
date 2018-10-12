@@ -45,6 +45,7 @@ export class ProgramacaoPage {
         this.trabalhos.subscribe(info => {
             for (let trabalho of info.trabalhos) {
                 trabalho.trabalho.favorito = false;
+                //this.setaFavoritos(trabalho);
                 this.listaTrabalhos.push(trabalho);
                 var data = trabalho.trabalho.apresentacao.data;
                 this.datasCompletas.push(data);
@@ -112,16 +113,8 @@ export class ProgramacaoPage {
         return this.datepipe.transform(data, 'dd/MM');
     }
 
-    getHorasInicio(data) {
-
-    }
-
     getHoraInicioTrabalho(trab) {
         return trab.trabalho.apresentacao.data.slice(11, 16);
-    }
-
-    getHoraFimTrabalho(trab) {
-
     }
 
     getPredioTrabalho(trab) {
@@ -139,8 +132,21 @@ export class ProgramacaoPage {
             this.listaFavoritos.push(trab);
         }
         else {
+            let flag = true;
             trab.favorito = false;
-            const index = this.listaFavoritos.indexOf(trab, 0);
+            let index;
+            if (flag) {
+                index = this.listaFavoritos.indexOf(trab, 0);
+                if (index == -1) flag = false;
+            }
+            if (!flag) {
+                for (let favorito of this.listaFavoritos) {
+                    if (favorito.trabalho.id == trab.trabalho.id) {
+                        index = this.listaFavoritos.indexOf(favorito, 0);
+                        break;
+                    }
+                }
+            }
             if (index > -1) this.listaFavoritos.splice(index, 1);
         }
     }
@@ -198,5 +204,15 @@ export class ProgramacaoPage {
 
     ionViewWillLeave() {
         this.data.paramData = this.listaFavoritos;
+    }
+
+    ionViewDidEnter() {
+        for (let fav of this.listaFavoritos) {
+            for (let trab of this.listaTrabalhos) {
+                if (fav.trabalho.id == trab.trabalho.id) {
+                    trab.favorito = true;
+                } else trab.favorito = false;
+            }
+        }
     }
 }
