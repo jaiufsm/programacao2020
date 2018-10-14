@@ -19,39 +19,22 @@
 <ion-content padding>
     <div>
         <ion-segment *ngIf="datas" [(ngModel)]="segmentData">
-            <ion-segment-button value="Todos"> Todos </ion-segment-button>
             <ion-segment-button value="Modulos"> Módulos </ion-segment-button>
             <ion-segment-button *ngFor="let data of datas" value="{{ data }}" (click)="putSegment(data)">
                 {{ dataFormatada(data) }}
             </ion-segment-button>
         </ion-segment>
     </div>
+    <!-- Abaixo, preciso usar [virtualScroll]="listaTrabalhos", mas não funciona... bug do ionic? -->
     <div [ngSwitch]="segmentData">
-        <ion-list *ngSwitchCase="'Todos'">
-            <ion-item-group *ngFor="let data of datas">
-                <ion-item-divider color="light">{{ dataFormatada(data) }}</ion-item-divider>
-                <ng-container *ngFor="let trab of listaTrabalhos">
-                    <ion-card ion-item *ngIf="getDataTrabalho(trab) == data">
-                        <ion-card-content>
-                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>
-                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>
-                            <p> Horário: {{ getHoraInicioTrabalho(trab) }} </p>
-                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>
-                            <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>
-                        </ion-card-content>
-                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">
-                            <ion-icon color="danger" [name]="trab.favorito ? 'heart' : 'heart-outline'"></ion-icon>
-                        </button>
-                    </ion-card>
-                </ng-container>
-            </ion-item-group>
-        </ion-list>
         <ng-container *ngFor="let data of datas">
-            <ion-list *ngSwitchCase="data">
-                <ion-item-group *ngFor="let horaInicio of getHorasIniciais(data)">
+            <ion-list *ngSwitchCase="data" [virtualScroll]="listaTrabalhos">
+                <!--<ion-item-group *ngFor="let horaInicio of getHorasIniciais(data)">
                     <ion-item-divider color="light"> {{ horaInicio }} </ion-item-divider>
-                    <ng-container *ngFor="let trab of listaTrabalhos">
-                        <ion-card ion-item *ngIf="getDataTrabalho(trab) == data && getHoraInicioTrabalho(trab) == horaInicio">
+                    <ng-container *ngFor="let trab of listaTrabalhos">-->
+                        <ion-item *virtualItem="let trab">
+                            <!--<ion-card *ngIf="getDataTrabalho(trab) == data && getHoraInicioTrabalho(trab) == horaInicio">-->
+                        <ion-card *ngIf="getDataTrabalho(trab) == data">
                             <ion-card-content>
                                 <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>
                                 <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>
@@ -62,7 +45,8 @@
                                 <ion-icon color="danger" [name]="trab.favorito ? 'heart' : 'heart-outline'"></ion-icon>
                             </button>
                         </ion-card>
-                    </ng-container>
+                        </ion-item>
+                    <!--</ng-container>-->
                 </ion-item-group>
             </ion-list>
         </ng-container>

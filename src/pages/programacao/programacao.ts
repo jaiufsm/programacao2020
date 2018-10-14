@@ -36,7 +36,7 @@ export class ProgramacaoPage {
         this.datasCompletas = [];
         this.locais = [];
         this.listaFavoritos = this.data.paramData;
-        this.segmentData = "Todos";
+        this.segmentData = "Modulos";
         this.listaAgrupadores = [];
         this.listaModulosID = [];
         this.trabalhos = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhos');
@@ -55,6 +55,11 @@ export class ProgramacaoPage {
                     this.locais.push(this.getPredioTrabalho(trabalho));
             }
             this.listaTrabalhosBkp = this.listaTrabalhos;
+            this.datas.sort(function(a, b) {
+                var a_ = +a.slice(8,10)
+                var b_ = +b.slice(8,10)
+                return a_ - b_;
+            });
         });
 
         //this.agrupadores = this.http.get('http://localhost:5000/jai/avaliacaoRest/findModulos');
