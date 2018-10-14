@@ -25677,3 +25677,23 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+page-modulos .accordion-list {
+  height: 100%;
+}
+
+page-modulos .section {
+  margin-bottom: 4px;
+}
+
+page-modulos .child {
+  margin-bottom: 4px;
+}
+
+page-modulos .label {
+  margin: 0px;
+}
+
+page-modulos .list {
+  margin-bottom: 4px;
+}

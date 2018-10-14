@@ -1,6 +1,6 @@
-webpackJsonp([0],{
+webpackJsonp([2],{
 
-/***/ 110:
+/***/ 112:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,36 +13,49 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 110;
+webpackEmptyAsyncContext.id = 112;
 
 /***/ }),
 
-/***/ 152:
-/***/ (function(module, exports) {
+/***/ 154:
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
+var map = {
+	"../pages/modulos-trabalhos/modulos-trabalhos.module": [
+		269,
+		1
+	],
+	"../pages/modulos/modulos.module": [
+		270,
+		0
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
 	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 152;
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 154;
+module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 192:
+/***/ 194:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__programacao_programacao__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__links_links__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__favoritos_favoritos__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__programacao_programacao__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__links_links__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__favoritos_favoritos__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,14 +69,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TabsPage = /** @class */ (function () {
     function TabsPage() {
         this.tab1Root = __WEBPACK_IMPORTED_MODULE_1__programacao_programacao__["a" /* ProgramacaoPage */];
         this.tab2Root = __WEBPACK_IMPORTED_MODULE_3__favoritos_favoritos__["a" /* FavoritosPage */];
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__links_links__["a" /* LinksPage */];
+        this.tab4Root = __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__["a" /* ModulosPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/probst/prog-jai/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Programação" tabIcon="calendar"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Favoritos" tabIcon="heart"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Links" tabIcon="link"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/probst/prog-jai/src/pages/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Programação" tabIcon="calendar"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Favoritos" tabIcon="heart"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Links" tabIcon="link"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -74,17 +89,18 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 193:
+/***/ 195:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProgramacaoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__filtro_filtro__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__filtro_filtro__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modulos_modulos__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -94,6 +110,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -117,11 +134,15 @@ var ProgramacaoPage = /** @class */ (function () {
         this.locais = [];
         this.listaFavoritos = this.data.paramData;
         this.segmentData = "Todos";
+        this.listaAgrupadores = [];
+        this.listaModulosID = [];
         this.trabalhos = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhos');
+        //this.trabalhos = this.http.get('http://localhost:5000/jai/avaliacaoRest/findTrabalhos');
         this.trabalhos.subscribe(function (info) {
             for (var _i = 0, _a = info.trabalhos; _i < _a.length; _i++) {
                 var trabalho = _a[_i];
                 trabalho.trabalho.favorito = false;
+                //this.setaFavoritos(trabalho);
                 _this.listaTrabalhos.push(trabalho);
                 var data = trabalho.trabalho.apresentacao.data;
                 _this.datasCompletas.push(data);
@@ -131,6 +152,20 @@ var ProgramacaoPage = /** @class */ (function () {
                     _this.locais.push(_this.getPredioTrabalho(trabalho));
             }
             _this.listaTrabalhosBkp = _this.listaTrabalhos;
+        });
+        //this.agrupadores = this.http.get('http://localhost:5000/jai/avaliacaoRest/findModulos');
+        this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
+        this.agrupadores.subscribe(function (info) {
+            for (var _i = 0, _a = info.modulos.agrupadores; _i < _a.length; _i++) {
+                var agrupador = _a[_i];
+                for (var _b = 0, _c = agrupador.modulos; _b < _c.length; _b++) {
+                    var modulo = _c[_b];
+                    _this.listaModulosID.push(modulo.id);
+                }
+                //console.log(modulo.modulos);
+                _this.listaAgrupadores.push(agrupador);
+                //this.listaModulosID.push(modulo.)
+            }
         });
         this.dataSelecionada = 'Todos';
         this.localSelecinado = 'Todos';
@@ -165,12 +200,8 @@ var ProgramacaoPage = /** @class */ (function () {
     ProgramacaoPage.prototype.dataFormatada = function (data) {
         return this.datepipe.transform(data, 'dd/MM');
     };
-    ProgramacaoPage.prototype.getHorasInicio = function (data) {
-    };
     ProgramacaoPage.prototype.getHoraInicioTrabalho = function (trab) {
         return trab.trabalho.apresentacao.data.slice(11, 16);
-    };
-    ProgramacaoPage.prototype.getHoraFimTrabalho = function (trab) {
     };
     ProgramacaoPage.prototype.getPredioTrabalho = function (trab) {
         return trab.trabalho.apresentacao.predio;
@@ -185,8 +216,23 @@ var ProgramacaoPage = /** @class */ (function () {
             this.listaFavoritos.push(trab);
         }
         else {
+            var flag = true;
             trab.favorito = false;
-            var index = this.listaFavoritos.indexOf(trab, 0);
+            var index = void 0;
+            if (flag) {
+                index = this.listaFavoritos.indexOf(trab, 0);
+                if (index == -1)
+                    flag = false;
+            }
+            if (!flag) {
+                for (var _i = 0, _a = this.listaFavoritos; _i < _a.length; _i++) {
+                    var favorito = _a[_i];
+                    if (favorito.trabalho.id == trab.trabalho.id) {
+                        index = this.listaFavoritos.indexOf(favorito, 0);
+                        break;
+                    }
+                }
+            }
             if (index > -1)
                 this.listaFavoritos.splice(index, 1);
         }
@@ -233,18 +279,34 @@ var ProgramacaoPage = /** @class */ (function () {
             });
         }
     };
+    ProgramacaoPage.prototype.paginaModulos = function (agrupador) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__modulos_modulos__["a" /* ModulosPage */], { agrupador: agrupador, datas: this.datas });
+    };
     ProgramacaoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ProgramacaoPage');
     };
     ProgramacaoPage.prototype.ionViewWillLeave = function () {
         this.data.paramData = this.listaFavoritos;
     };
+    ProgramacaoPage.prototype.ionViewDidEnter = function () {
+        for (var _i = 0, _a = this.listaFavoritos; _i < _a.length; _i++) {
+            var fav = _a[_i];
+            for (var _b = 0, _c = this.listaTrabalhos; _b < _c.length; _b++) {
+                var trab = _c[_b];
+                if (fav.trabalho.id == trab.trabalho.id) {
+                    trab.favorito = true;
+                }
+                else
+                    trab.favorito = false;
+            }
+        }
+    };
     ProgramacaoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-programacao',template:/*ion-inline-start:"/home/probst/prog-jai/src/pages/programacao/programacao.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> JAI - Programação </ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                    <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n                <ion-col col-2>\n                    <button ion-button clear icon-only item-end color="light" (click)="mostrarFiltro()">\n                        <ion-icon name="funnel"></ion-icon>\n                    </button>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment *ngIf="datas" [(ngModel)]="segmentData">\n            <ion-segment-button value="Todos"> Todos </ion-segment-button>\n            <ion-segment-button *ngFor="let data of datas" value="{{ data }}" (click)="putSegment(data)">\n                {{ dataFormatada(data) }}\n            </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ion-list *ngSwitchCase="\'Todos\'">\n            <ion-item-group *ngFor="let data of datas">\n                <ion-item-divider color="light">{{ dataFormatada(data) }}</ion-item-divider>\n                <ng-container *ngFor="let trab of listaTrabalhos">\n                    <ion-card ion-item *ngIf="getDataTrabalho(trab) == data">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-item-group>\n        </ion-list>\n        <ng-container *ngFor="let data of datas">\n            <ion-list *ngSwitchCase="data">\n                <ion-item-group *ngFor="let horaInicio of getHorasIniciais(data)">\n                    <ion-item-divider color="light"> {{ horaInicio }} </ion-item-divider>\n                    <ng-container *ngFor="let trab of listaTrabalhos">\n                        <ion-card ion-item *ngIf="getDataTrabalho(trab) == data && getHoraInicioTrabalho(trab) == horaInicio">\n                            <ion-card-content>\n                                <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                                <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                                <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                                <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>\n                            </ion-card-content>\n                            <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                                <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                            </button>\n                        </ion-card>\n                    </ng-container>\n                </ion-item-group>\n            </ion-list>\n        </ng-container>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai/src/pages/programacao/programacao.html"*/
+            selector: 'page-programacao',template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/programacao/programacao.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> JAI - Programação </ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                    <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n                <ion-col col-2>\n                    <button ion-button clear icon-only item-end color="light" (click)="mostrarFiltro()">\n                        <ion-icon name="funnel"></ion-icon>\n                    </button>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment *ngIf="datas" [(ngModel)]="segmentData">\n            <ion-segment-button value="Todos"> Todos </ion-segment-button>\n            <ion-segment-button value="Modulos"> Módulos </ion-segment-button>\n            <ion-segment-button *ngFor="let data of datas" value="{{ data }}" (click)="putSegment(data)">\n                {{ dataFormatada(data) }}\n            </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ion-list *ngSwitchCase="\'Todos\'">\n            <ion-item-group *ngFor="let data of datas">\n                <ion-item-divider color="light">{{ dataFormatada(data) }}</ion-item-divider>\n                <ng-container *ngFor="let trab of listaTrabalhos">\n                    <ion-card ion-item *ngIf="getDataTrabalho(trab) == data">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-item-group>\n        </ion-list>\n        <ng-container *ngFor="let data of datas">\n            <ion-list *ngSwitchCase="data">\n                <ion-item-group *ngFor="let horaInicio of getHorasIniciais(data)">\n                    <ion-item-divider color="light"> {{ horaInicio }} </ion-item-divider>\n                    <ng-container *ngFor="let trab of listaTrabalhos">\n                        <ion-card ion-item *ngIf="getDataTrabalho(trab) == data && getHoraInicioTrabalho(trab) == horaInicio">\n                            <ion-card-content>\n                                <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                                <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                                <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                                <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>\n                            </ion-card-content>\n                            <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                                <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                            </button>\n                        </ion-card>\n                    </ng-container>\n                </ion-item-group>\n            </ion-list>\n        </ng-container>\n        <ion-list *ngSwitchCase="\'Modulos\'">\n            <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">\n                {{ agrupador.nome  }}\n            </button>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/programacao/programacao.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* ModalController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */]])
     ], ProgramacaoPage);
     return ProgramacaoPage;
 }());
@@ -253,13 +315,13 @@ var ProgramacaoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 194:
+/***/ 196:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FiltroPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -302,9 +364,9 @@ var FiltroPage = /** @class */ (function () {
     };
     FiltroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-filtro',template:/*ion-inline-start:"/home/probst/prog-jai/src/pages/filtro/filtro.html"*/'<!--\n    Generated template for the FilterPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Filtrar programação\n        </ion-title>\n        <!--\n        <ion-buttons end>\n            <button ion-button (click)="aplicarFiltros()" strong>OK</button>\n        </ion-buttons>\n        -->\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class="outer-content">\n    <ion-list>\n        <ion-item>\n            <ion-label>Data</ion-label>\n            <ion-select interface="popover" [(ngModel)]="dataSelecionada">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let data of datas">{{ data }}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-item>\n            <ion-label>Local</ion-label>\n            <ion-select interface="popover" [(ngModel)]="localSelecionado">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let local of locais">{{ local }}</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n    <ion-row center>\n        <ion-col text-center>\n            <button ion-button outline (click)="aplicarFiltros()">\n                OK\n            </button>\n        </ion-col>\n    </ion-row>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai/src/pages/filtro/filtro.html"*/,
+            selector: 'page-filtro',template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/filtro/filtro.html"*/'<!--\n    Generated template for the FilterPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Filtrar programação\n        </ion-title>\n        <!--\n        <ion-buttons end>\n            <button ion-button (click)="aplicarFiltros()" strong>OK</button>\n        </ion-buttons>\n        -->\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class="outer-content">\n    <ion-list>\n        <ion-item>\n            <ion-label>Data</ion-label>\n            <ion-select interface="popover" [(ngModel)]="dataSelecionada">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let data of datas">{{ data }}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-item>\n            <ion-label>Local</ion-label>\n            <ion-select interface="popover" [(ngModel)]="localSelecionado">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let local of locais">{{ local }}</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n    <ion-row center>\n        <ion-col text-center>\n            <button ion-button outline (click)="aplicarFiltros()">\n                OK\n            </button>\n        </ion-col>\n    </ion-row>\n</ion-content>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/filtro/filtro.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ViewController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
     ], FiltroPage);
     return FiltroPage;
 }());
@@ -313,13 +375,13 @@ var FiltroPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 195:
+/***/ 197:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinksPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -337,9 +399,9 @@ var LinksPage = /** @class */ (function () {
     }
     LinksPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-links',template:/*ion-inline-start:"/home/probst/prog-jai/src/pages/links/links.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Links\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-card>\n        <ion-list>\n            <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="https://www.ufsm.br/">Site da UFSM</a>\n            </ion-card-content>\n             <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="http://w3.ufsm.br/jai/">Página da JAI</a>\n            </ion-card-content>\n\n        </ion-list>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai/src/pages/links/links.html"*/
+            selector: 'page-links',template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/links/links.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Links\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-card>\n        <ion-list>\n            <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="https://www.ufsm.br/">Site da UFSM</a>\n            </ion-card-content>\n             <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="http://w3.ufsm.br/jai/">Página da JAI</a>\n            </ion-card-content>\n\n        </ion-list>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/links/links.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], LinksPage);
     return LinksPage;
 }());
@@ -348,15 +410,15 @@ var LinksPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 196:
+/***/ 198:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FavoritosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -407,9 +469,9 @@ var FavoritosPage = /** @class */ (function () {
     };
     FavoritosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-favoritos',template:/*ion-inline-start:"/home/probst/prog-jai/src/pages/favoritos/favoritos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Favoritos\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <div *ngIf="listaFavoritos?.length > 0; else empty">\n            <ion-card ion-item *ngFor="let fav of listaFavoritos">\n                <ion-card-content>\n                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>\n                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>\n                    <p> Data: {{ dataFormatada(getDataFav(fav)) }},\n                        {{ getHoraInicioFav(fav) }}\n                    </p>\n                    <p text-wrap>Local: {{ getPredioFav(fav) }}</p>\n                    <p text-wrap>Sala: {{ getSalaFav(fav) }}</p>\n                </ion-card-content>\n                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">\n                    <ion-icon color="danger" name="trash"></ion-icon>\n                </button>\n            </ion-card>\n        </div>\n        <ng-template #empty>\n            <ion-card>\n                <ion-card-content>\n                    Nenhum favorito encontrado.\n                </ion-card-content>\n            </ion-card>\n        </ng-template>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai/src/pages/favoritos/favoritos.html"*/
+            selector: 'page-favoritos',template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/favoritos/favoritos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Favoritos\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <div *ngIf="listaFavoritos?.length > 0; else empty">\n            <ion-card ion-item *ngFor="let fav of listaFavoritos">\n                <ion-card-content>\n                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>\n                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>\n                    <p> Data: {{ dataFormatada(getDataFav(fav)) }},\n                        {{ getHoraInicioFav(fav) }}\n                    </p>\n                    <p text-wrap>Local: {{ getPredioFav(fav) }}</p>\n                    <p text-wrap>Sala: {{ getSalaFav(fav) }}</p>\n                </ion-card-content>\n                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">\n                    <ion-icon color="danger" name="trash"></ion-icon>\n                </button>\n            </ion-card>\n        </div>\n        <ng-template #empty>\n            <ion-card>\n                <ion-card-content>\n                    Nenhum favorito encontrado.\n                </ion-card-content>\n            </ion-card>\n        </ng-template>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/favoritos/favoritos.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */]])
     ], FavoritosPage);
     return FavoritosPage;
 }());
@@ -418,13 +480,13 @@ var FavoritosPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 197:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(221);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -432,29 +494,33 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 219:
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_links_links__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_data_data__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_links_links__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_data_data__ = __webpack_require__(47);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -480,14 +546,19 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__["a" /* ProgramacaoPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_links_links__["a" /* LinksPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__["a" /* FavoritosPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */]
+                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__["a" /* ModulosPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
-                    links: []
+                    links: [
+                        { loadChildren: '../pages/modulos-trabalhos/modulos-trabalhos.module#ModulosTrabalhosPageModule', name: 'ModulosTrabalhosPage', segment: 'modulos-trabalhos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/modulos/modulos.module#ModulosPageModule', name: 'ModulosPage', segment: 'modulos', priority: 'low', defaultHistory: [] }
+                    ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_9__angular_common_http__["b" /* HttpClientModule */]
+                __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["b" /* HttpClientModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
@@ -496,14 +567,16 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__["a" /* ProgramacaoPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_links_links__["a" /* LinksPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__["a" /* FavoritosPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */]
+                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__["a" /* ModulosPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */]
             ],
             providers: [
                 //StatusBar,
                 //SplashScreen,
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_10__angular_common__["d" /* DatePipe */],
-                __WEBPACK_IMPORTED_MODULE_11__providers_data_data__["a" /* DataProvider */]
+                __WEBPACK_IMPORTED_MODULE_12__angular_common__["d" /* DatePipe */],
+                __WEBPACK_IMPORTED_MODULE_13__providers_data_data__["a" /* DataProvider */]
             ]
         })
     ], AppModule);
@@ -514,13 +587,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 261:
+/***/ 268:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -540,7 +613,7 @@ var MyApp = /** @class */ (function () {
         this.rootPage = __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__["a" /* TabsPage */];
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/probst/prog-jai/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/probst/prog-jai/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], MyApp);
@@ -551,12 +624,12 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 97:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -590,7 +663,208 @@ var DataProvider = /** @class */ (function () {
 
 //# sourceMappingURL=data.js.map
 
+/***/ }),
+
+/***/ 52:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(99);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ModulosPage = /** @class */ (function () {
+    function ModulosPage(navCtrl, navParams, datepipe) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.datepipe = datepipe;
+        this.listaModulos = [];
+        this.agrupador = this.navParams.data.agrupador;
+        this.datas = this.navParams.data.datas;
+        for (var _i = 0, _a = this.agrupador.modulos; _i < _a.length; _i++) {
+            var modulo = _a[_i];
+            this.listaModulos.push(modulo);
+        }
+        console.log(this.datas);
+    }
+    ModulosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ModulosPage');
+    };
+    ModulosPage.prototype.toggleSection = function (i) {
+        this.listaModulos[i].open = !this.listaModulos[i].open;
+    };
+    ModulosPage.prototype.paginaModulosTrabalhos = function (i, j) {
+        this.moduloSelect = this.listaModulos[i];
+        this.dataSelect = this.datas[j];
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */], { moduloSelect: this.moduloSelect, dataSelect: this.dataSelect });
+    };
+    ModulosPage.prototype.dataFormatada = function (data) {
+        return this.datepipe.transform(data, 'dd/MM');
+    };
+    ModulosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-modulos',template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/modulos/modulos.html"*/'<!--\n    Generated template for the ModulosPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <ion-title>Módulos</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div>\n        <ion-list class="accordion-list">\n            <ion-list-header *ngFor="let modulo of listaModulos, let i = index" no-lines no-padding>\n                <button text-wrap ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': modulo.open, \'section\': !modulo.open}">\n                    <ion-icon item-left name="arrow-forward" *ngIf="!modulo.open"></ion-icon>\n                    <ion-icon item-left name="arrow-down" *ngIf="modulo.open"></ion-icon>\n                    {{ modulo.nome }}\n                </button>\n                <ion-list *ngIf="modulo.open" no-lines>\n                    <ion-list-header *ngFor="let data of datas; let j = index" no-padding>\n                        <button ion-item (click)="paginaModulosTrabalhos(i, j)" class="child" detail-none>\n                        {{ dataFormatada(data) }}\n                        </button>\n                    </ion-list-header>\n                </ion-list>\n            </ion-list-header>\n        </ion-list>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/modulos/modulos.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* DatePipe */]])
+    ], ModulosPage);
+    return ModulosPage;
+}());
+
+//# sourceMappingURL=modulos.js.map
+
+/***/ }),
+
+/***/ 99:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosTrabalhosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ModulosTrabalhosPage = /** @class */ (function () {
+    function ModulosTrabalhosPage(navCtrl, navParams, http, data, datepipe) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.http = http;
+        this.data = data;
+        this.datepipe = datepipe;
+        this.listaFavoritos = this.data.paramData;
+        this.dataSelect = this.navParams.data.dataSelect;
+        this.moduloSelect = this.navParams.data.moduloSelect;
+        this.horasInicio = [];
+        this.listaTrabalhosModulo = [];
+        var url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" +
+            this.dataSelect + "&modulo=" + this.moduloSelect.id;
+        this.trabalhosModulo = this.http.get(url);
+        this.trabalhosModulo.subscribe(function (info) {
+            for (var _i = 0, _a = info.trabalhos; _i < _a.length; _i++) {
+                var trabalho = _a[_i];
+                _this.setaFavoritos(trabalho);
+                _this.listaTrabalhosModulo.push(trabalho);
+                _this.addHora(trabalho);
+            }
+        });
+    }
+    ModulosTrabalhosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ModulosTrabalhosPage');
+    };
+    ModulosTrabalhosPage.prototype.dataFormatada = function (data) {
+        return this.datepipe.transform(data, 'dd/MM');
+    };
+    ModulosTrabalhosPage.prototype.getHoraInicioTrabalho = function (trab) {
+        return trab.trabalho.apresentacao.data.slice(11, 16);
+    };
+    ModulosTrabalhosPage.prototype.addHora = function (trab) {
+        this.horasInicio.push(this.getHoraInicioTrabalho(trab));
+    };
+    ModulosTrabalhosPage.prototype.getTituloTrabalho = function (trab) {
+        return trab.trabalho.titulo;
+    };
+    ModulosTrabalhosPage.prototype.getApresentadorTrabalho = function (trab) {
+        return trab.trabalho.apresentador;
+    };
+    ModulosTrabalhosPage.prototype.getPredioTrabalho = function (trab) {
+        return trab.trabalho.apresentacao.predio;
+    };
+    ModulosTrabalhosPage.prototype.getSalaTrabalho = function (trab) {
+        return trab.trabalho.apresentacao.sala;
+    };
+    ModulosTrabalhosPage.prototype.setaFavoritos = function (trab) {
+        for (var _i = 0, _a = this.listaFavoritos; _i < _a.length; _i++) {
+            var favorito = _a[_i];
+            if (favorito.trabalho.id == trab.trabalho.id) {
+                trab.favorito = true;
+                return;
+            }
+        }
+        trab.favorito = false;
+    };
+    ModulosTrabalhosPage.prototype.favorito = function (trab, e) {
+        e.stopPropagation();
+        if (!trab.favorito) {
+            trab.favorito = true;
+            this.listaFavoritos.push(trab);
+        }
+        else {
+            var flag = true;
+            trab.favorito = false;
+            var index = void 0;
+            if (flag) {
+                index = this.listaFavoritos.indexOf(trab, 0);
+                if (index == -1)
+                    flag = false;
+            }
+            if (!flag) {
+                for (var _i = 0, _a = this.listaFavoritos; _i < _a.length; _i++) {
+                    var favorito = _a[_i];
+                    if (favorito.trabalho.id == trab.trabalho.id) {
+                        break;
+                    }
+                }
+            }
+            if (index > -1)
+                this.listaFavoritos.splice(index, 1);
+        }
+    };
+    ModulosTrabalhosPage.prototype.ionViewWillLeave = function () {
+        this.data.paramData = this.listaFavoritos;
+    };
+    ModulosTrabalhosPage.prototype.ionViewDidEnter = function () {
+        for (var _i = 0, _a = this.listaFavoritos; _i < _a.length; _i++) {
+            var fav = _a[_i];
+            for (var _b = 0, _c = this.listaTrabalhosModulo; _b < _c.length; _b++) {
+                var trab = _c[_b];
+                if (!(fav.trabalho.id == trab.trabalho.id)) {
+                    trab.favorito = false;
+                }
+            }
+        }
+    };
+    ModulosTrabalhosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-modulos-trabalhos',template:/*ion-inline-start:"/home/andrea/Downloads/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/'<!--\n    Generated template for the ModulosTrabalhosPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n\n    <ion-navbar>\n        <ion-title>{{ moduloSelect.nome  }} - {{ dataFormatada(dataSelect) }}</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <div *ngIf="listaTrabalhosModulo.length > 0;then ok else empty"></div>\n    <ng-template #ok>\n        <ion-list>\n            <ion-item-group *ngFor="let hora of horasInicio">\n                <ion-item-divider color="light">{{ hora }}</ion-item-divider>\n                <ng-container *ngFor="let trab of listaTrabalhosModulo">\n                    <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-item-group>\n        </ion-list>\n    </ng-template>\n    <ng-template #empty>\n        <ion-card>\n            <ion-card-content>\n                <p>Nenhum trabalho deste módulo encontrado para o dia selecionado.</p>\n            </ion-card-content>\n        </ion-card>\n    </ng-template>\n</ion-content>\n'/*ion-inline-end:"/home/andrea/Downloads/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_4__angular_common__["d" /* DatePipe */]])
+    ], ModulosTrabalhosPage);
+    return ModulosTrabalhosPage;
+}());
+
+//# sourceMappingURL=modulos-trabalhos.js.map
+
 /***/ })
 
-},[197]);
+},[199]);
 //# sourceMappingURL=main.js.map
