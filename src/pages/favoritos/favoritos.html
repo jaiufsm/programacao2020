@@ -13,11 +13,10 @@
                 <ion-card-content>
                     <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>
                     <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>
-                    <p> Data: {{ dataFormatada(getDataFav(fav)) }},
-                        {{ getHoraInicioFav(fav) }}
-                    </p>
-                    <p text-wrap>Local: {{ getPredioFav(fav) }}</p>
-                    <p text-wrap>Sala: {{ getSalaFav(fav) }}</p>
+                    <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>
+                    <p> Horário: {{ getHoraInicioFav(fav) }} </p>
+                    <p>Local: {{ getPredioFav(fav) }}</p>
+                    <p>Sala/Painel: {{ getSalaFav(fav) }}</p>
                 </ion-card-content>
                 <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">
                     <ion-icon color="danger" name="trash"></ion-icon>

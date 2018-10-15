@@ -1,45 +1,73 @@
-<!--
-    Generated template for the ModulosTrabalhosPage page.
-
-    See http://ionicframework.com/docs/components/#navigation for more info on
-    Ionic pages and navigation.
--->
 <ion-header>
-
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>{{ moduloSelect.nome  }} - {{ dataFormatada(dataSelect) }}</ion-title>
+        <ion-toolbar>
+            <ion-row>
+                <ion-col>
+                     <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>
+                </ion-col>
+            </ion-row>
+        </ion-toolbar>
     </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
     <div *ngIf="listaTrabalhosModulo.length > 0;then ok else empty"></div>
     <ng-template #ok>
-        <ion-list>
-            <ion-item-group *ngFor="let hora of horasInicio">
-                <ion-item-divider color="light">{{ hora }}</ion-item-divider>
-                <ng-container *ngFor="let trab of listaTrabalhosModulo">
+        <div>
+            <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">
+                <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">
+                    {{ hora }}
+                </ion-segment-button>
+            </ion-segment>
+        </div>
+        <div [ngSwitch]="segmentData">
+             <ng-container *ngFor="let hora of horasInicio">
+                 <ion-list *ngSwitchCase="hora">
+                    <ng-container *ngFor="let trab of listaTrabalhosModulo">
                     <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">
                         <ion-card-content>
                             <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>
                             <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>
+                            <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>
                             <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>
-                            <p text-wrap> Sala: {{ getSalaTrabalho(trab) }} </p>
+                            <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>
                         </ion-card-content>
                         <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">
                             <ion-icon color="danger" [name]="trab.favorito ? 'heart' : 'heart-outline'"></ion-icon>
                         </button>
                     </ion-card>
                 </ng-container>
-            </ion-item-group>
         </ion-list>
+        </ng-container>
+        </div>
     </ng-template>
     <ng-template #empty>
         <ion-card>
             <ion-card-content>
-                <p>Nenhum trabalho deste módulo encontrado para o dia selecionado.</p>
+                <p>Nenhum trabalho encontrado.</p>
             </ion-card-content>
         </ion-card>
     </ng-template>
 </ion-content>
+
+<!-- Usando virtualScroll (não pode ficar dentro de ngIf!); mais limitado":
+<ion-content padding>
+    <div style="height:100%">
+        <ion-list [virtualScroll]="listaTrabalhosModulo">
+                <ion-card ion-item *virtualItem="let trab">
+                    <ion-card-content>
+                        <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>
+                        <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>
+                        <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>
+                        <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>
+                        <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>
+                    </ion-card-content>
+                    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">
+                        <ion-icon color="danger" [name]="trab.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+                        </button>
+                </ion-card>
+        </ion-list>
+    </div>
+</ion-content>
+-->

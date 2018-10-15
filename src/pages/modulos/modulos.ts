@@ -22,7 +22,11 @@ export class ModulosPage {
         for (let modulo of this.agrupador.modulos) {
             this.listaModulos.push(modulo);
         }
-        console.log(this.datas);
+        this.listaModulos.sort(function(a, b) {
+            var a_ = a.nome;
+            var b_ = b.nome;
+            return (a_ < b_) ? -1 : (a_ > b_) ? 1 : 0;
+        });
     }
 
     ionViewDidLoad() {

@@ -15,7 +15,9 @@ export class ModulosTrabalhosPage {
     moduloSelect: any;
     trabalhosModulo: Observable<any>;
     listaTrabalhosModulo: any[];
+    listaTrabalhosBkp: any[];
     horasInicio: any;
+    segmentData: string;
     public listaFavoritos: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, 
@@ -24,6 +26,7 @@ export class ModulosTrabalhosPage {
         this.dataSelect = this.navParams.data.dataSelect;
         this.moduloSelect = this.navParams.data.moduloSelect;
         this.horasInicio = [];
+        this.listaTrabalhosBkp = [];
         this.listaTrabalhosModulo = [];
 
         const url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" + 
@@ -37,11 +40,13 @@ export class ModulosTrabalhosPage {
                 this.listaTrabalhosModulo.push(trabalho);
                 this.addHora(trabalho); 
             }
+            this.listaTrabalhosBkp = this.listaTrabalhosModulo;
+            this.segmentData = this.horasInicio[0];
         });
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad ModulosTrabalhosPage');
+    putSegment(hora) {
+        this.segmentData = hora;
     }
 
     dataFormatada(data) {
@@ -53,7 +58,10 @@ export class ModulosTrabalhosPage {
     }
     
     addHora(trab) {
-        this.horasInicio.push(this.getHoraInicioTrabalho(trab));
+        var novaHora = this.getHoraInicioTrabalho(trab);
+        if (this.horasInicio.indexOf(novaHora) === -1) {
+            this.horasInicio.push(novaHora);
+        }
     }
 
     getTituloTrabalho(trab) {
@@ -70,6 +78,10 @@ export class ModulosTrabalhosPage {
 
     getSalaTrabalho(trab) {
         return trab.trabalho.apresentacao.sala;
+    }
+
+    getDataTrabalho(trab) {
+        return trab.trabalho.apresentacao.data.slice(0,10);
     }
 
     setaFavoritos(trab) {
@@ -89,6 +101,17 @@ export class ModulosTrabalhosPage {
             this.listaFavoritos.push(trab);
         }
         else {
+            trab.favorito = false;
+            let index = -1;
+            for (let favorito of this.listaFavoritos) {
+                if (favorito.trabalho.id == trab.trabalho.id) {
+                    index = this.listaFavoritos.indexOf(favorito, 0);
+                }
+            }
+            if (index > -1) this.listaFavoritos.splice(index, 1);
+
+         }
+            /*
             let flag = true;
             trab.favorito = false;
             let index;
@@ -105,19 +128,28 @@ export class ModulosTrabalhosPage {
             }
             if (index > -1) this.listaFavoritos.splice(index, 1);
         }
+        */
+    }
+
+    getTrabalhos(e: any) {
+        this.listaTrabalhosModulo = this.listaTrabalhosBkp;
+        let filtro = e.target.value;
+        if (filtro && filtro.trim() != '') {
+            let filtroLC = filtro.toLowerCase();
+            this.listaTrabalhosModulo = this.listaTrabalhosModulo.filter((item) => {
+                return (this.getTituloTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                || this.getPredioTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                || this.getSalaTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                || this.getApresentadorTrabalho(item).toLowerCase().indexOf(filtroLC) > -1);
+            });
+        }
     }
     
     ionViewWillLeave() {
         this.data.paramData = this.listaFavoritos;
     }
 
-    ionViewDidEnter() {
-        for (let fav of this.listaFavoritos) {
-            for (let trab of this.listaTrabalhosModulo) {
-                if (!(fav.trabalho.id == trab.trabalho.id)) {
-                    trab.favorito = false;
-                }
-            }
-        }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad ModulosTrabalhosPage');
     }
 }
