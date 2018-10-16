@@ -84,7 +84,7 @@ var TabsPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProgramacaoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -181,7 +181,7 @@ var ProgramacaoPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosTrabalhosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -337,7 +337,7 @@ var ModulosTrabalhosPage = /** @class */ (function () {
     };
     ModulosTrabalhosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modulos-trabalhos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>{{ moduloSelect.nome  }} - {{ dataFormatada(dataSelect) }}</ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                     <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div *ngIf="listaTrabalhosModulo.length > 0;then ok else empty"></div>\n    <ng-template #ok>\n        <div>\n            <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">\n                <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">\n                    {{ hora }}\n                </ion-segment-button>\n            </ion-segment>\n        </div>\n        <div [ngSwitch]="segmentData">\n             <ng-container *ngFor="let hora of horasInicio">\n                 <ion-list *ngSwitchCase="hora">\n                    <ng-container *ngFor="let trab of listaTrabalhosModulo">\n                    <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n        </ion-list>\n        </ng-container>\n        </div>\n    </ng-template>\n    <ng-template #empty>\n        <ion-card>\n            <ion-card-content>\n                <p>Nenhum trabalho encontrado.</p>\n            </ion-card-content>\n        </ion-card>\n    </ng-template>\n</ion-content>\n\n<!-- Usando virtualScroll (não pode ficar dentro de ngIf!); mais limitado":\n<ion-content padding>\n    <div style="height:100%">\n        <ion-list [virtualScroll]="listaTrabalhosModulo">\n                <ion-card ion-item *virtualItem="let trab">\n                    <ion-card-content>\n                        <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                        <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                        <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                        <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                        <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n                    </ion-card-content>\n                    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                        <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                </ion-card>\n        </ion-list>\n    </div>\n</ion-content>\n-->\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/,
+            selector: 'page-modulos-trabalhos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>{{ moduloSelect.nome  }} - {{ dataFormatada(dataSelect) }}</ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                    <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">\n            <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">\n                {{ hora }}\n            </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ng-container *ngFor="let hora of horasInicio">\n            <ion-list *ngSwitchCase="hora">\n                <ng-container *ngFor="let trab of listaTrabalhosModulo">\n                    <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-list>\n        </ng-container>\n    </div>\n</ion-content>\n\n<!-- Usando virtualScroll (não pode ficar dentro de ngIf!); mais limitado":\n    <ion-content padding>\n    <div style="height:100%">\n    <ion-list [virtualScroll]="listaTrabalhosModulo">\n    <ion-card ion-item *virtualItem="let trab">\n    <ion-card-content>\n    <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n    <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n    <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n    <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n    <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n    </ion-card-content>\n    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n    <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n    </button>\n    </ion-card>\n    </ion-list>\n    </div>\n    </ion-content>\n-->\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_4__angular_common__["d" /* DatePipe */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */]])
@@ -484,7 +484,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_data_data__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -660,7 +660,7 @@ var FiltroPage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -703,8 +703,9 @@ var DataProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -718,14 +719,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ModulosPage = /** @class */ (function () {
-    function ModulosPage(navCtrl, navParams, datepipe) {
+    function ModulosPage(navCtrl, navParams, datepipe, http) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.datepipe = datepipe;
+        this.http = http;
         this.listaModulos = [];
         this.agrupador = this.navParams.data.agrupador;
         this.datas = this.navParams.data.datas;
+        this.datas_mods = [];
         for (var _i = 0, _a = this.agrupador.modulos; _i < _a.length; _i++) {
             var modulo = _a[_i];
             this.listaModulos.push(modulo);
@@ -735,6 +740,14 @@ var ModulosPage = /** @class */ (function () {
             var b_ = b.nome;
             return (a_ < b_) ? -1 : (a_ > b_) ? 1 : 0;
         });
+        this.datas_mods_get = this.http.get('./assets/data/datas_modulos.json');
+        this.datas_mods_get.subscribe(function (info) {
+            for (var _i = 0, _a = info.datas_modulos; _i < _a.length; _i++) {
+                var datas_mod = _a[_i];
+                _this.datas_mods.push(datas_mod);
+            }
+            console.log(_this.datas_mods);
+        });
     }
     ModulosPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ModulosPage');
@@ -742,19 +755,20 @@ var ModulosPage = /** @class */ (function () {
     ModulosPage.prototype.toggleSection = function (i) {
         this.listaModulos[i].open = !this.listaModulos[i].open;
     };
-    ModulosPage.prototype.paginaModulosTrabalhos = function (i, j) {
+    ModulosPage.prototype.paginaModulosTrabalhos = function (i, data) {
         this.moduloSelect = this.listaModulos[i];
-        this.dataSelect = this.datas[j];
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */], { moduloSelect: this.moduloSelect, dataSelect: this.dataSelect });
+        this.dataSelect = data;
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */], { moduloSelect: this.moduloSelect, dataSelect: this.dataSelect });
     };
     ModulosPage.prototype.dataFormatada = function (data) {
         return this.datepipe.transform(data, 'dd/MM');
     };
     ModulosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modulos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/'<!--\n    Generated template for the ModulosPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-title>Módulos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-list class="accordion-list">\n            <ion-list-header *ngFor="let modulo of listaModulos, let i = index" no-lines no-padding>\n                <button text-wrap ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': modulo.open, \'section\': !modulo.open}">\n                    <ion-icon item-left name="arrow-forward" *ngIf="!modulo.open"></ion-icon>\n                    <ion-icon item-left name="arrow-down" *ngIf="modulo.open"></ion-icon>\n                    {{ modulo.nome }}\n                </button>\n                <ion-list *ngIf="modulo.open" no-lines>\n                    <ion-list-header *ngFor="let data of datas; let j = index" no-padding>\n                        <button ion-item (click)="paginaModulosTrabalhos(i, j)" class="child" detail-none>\n                        {{ dataFormatada(data) }}\n                        </button>\n                    </ion-list-header>\n                </ion-list>\n            </ion-list-header>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/,
+            selector: 'page-modulos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>Módulos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-list class="accordion-list">\n            <ion-list-header *ngFor="let modulo of listaModulos, let i = index" no-lines no-padding>\n                <button text-wrap ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': modulo.open, \'section\': !modulo.open}">\n                    <ion-icon item-left name="arrow-forward" *ngIf="!modulo.open"></ion-icon>\n                    <ion-icon item-left name="arrow-down" *ngIf="modulo.open"></ion-icon>\n                    {{ modulo.nome }}\n                </button>\n                <ion-list *ngIf="modulo.open" no-lines>\n                    <ng-container *ngFor="let data_mod of datas_mods">\n                        <ng-container *ngIf="data_mod.id == modulo.id">\n                            <ion-list-header *ngFor="let data of data_mod.datas; let j = index" no-padding>\n                                <button ion-item (click)="paginaModulosTrabalhos(i, data)" class="child" detail-none>\n                                    {{ dataFormatada(data) }}\n                                </button>\n                            </ion-list-header>\n                        </ng-container>\n                    </ng-container>\n                </ion-list>\n            </ion-list-header>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* DatePipe */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], ModulosPage);
     return ModulosPage;
 }());
