@@ -7,7 +7,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ProgramacaoPage } from './../pages/programacao/programacao';
 import { LinksPage } from '../pages/links/links';
 import { FavoritosPage } from './../pages/favoritos/favoritos';
-import { FiltroPage } from './../pages/filtro/filtro';
 import { ModulosPage } from './../pages/modulos/modulos';
 import { ModulosTrabalhosPage } from './../pages/modulos-trabalhos/modulos-trabalhos';
 
@@ -24,7 +23,6 @@ import { DataProvider } from '../providers/data/data';
     ProgramacaoPage,
     LinksPage,
     FavoritosPage,
-    FiltroPage,
     ModulosPage,
     ModulosTrabalhosPage
   ],
@@ -40,7 +38,6 @@ import { DataProvider } from '../providers/data/data';
     ProgramacaoPage,
     LinksPage,
     FavoritosPage,
-    FiltroPage,
     ModulosPage,
     ModulosTrabalhosPage
   ],
