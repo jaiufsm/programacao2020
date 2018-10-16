@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from "../../providers/data/data";
 import { DatePipe } from '@angular/common';
 
-@IonicPage()
 @Component({
     selector: 'page-modulos-trabalhos',
     templateUrl: 'modulos-trabalhos.html',

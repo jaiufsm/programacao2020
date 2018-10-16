@@ -1,6 +1,6 @@
-webpackJsonp([2],{
+webpackJsonp([0],{
 
-/***/ 112:
+/***/ 111:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,49 +13,37 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 112;
+webpackEmptyAsyncContext.id = 111;
 
 /***/ }),
 
-/***/ 154:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 153:
+/***/ (function(module, exports) {
 
-var map = {
-	"../pages/modulos-trabalhos/modulos-trabalhos.module": [
-		269,
-		1
-	],
-	"../pages/modulos/modulos.module": [
-		270,
-		0
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
-		return __webpack_require__(ids[0]);
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
 	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = 154;
-module.exports = webpackAsyncContext;
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 153;
 
 /***/ }),
 
-/***/ 194:
+/***/ 193:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__programacao_programacao__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__programacao_programacao__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__links_links__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__favoritos_favoritos__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -89,16 +77,16 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 195:
+/***/ 194:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProgramacaoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -160,8 +148,8 @@ var ProgramacaoPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-programacao',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/programacao/programacao.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> JAI - Programação </ion-title>\n        <!--\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                    <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n                <ion-col col-2>\n                    <button ion-button clear icon-only item-end color="light" (click)="mostrarFiltro()">\n                        <ion-icon name="funnel"></ion-icon>\n                    </button>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n        -->\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment *ngIf="datas" [(ngModel)]="segmentData">\n            <ion-segment-button value="Modulos"> Agrupadores </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ion-list *ngSwitchCase="\'Modulos\'">\n            <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">\n                {{ agrupador.nome  }}\n            </button>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/programacao/programacao.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
     ], ProgramacaoPage);
     return ProgramacaoPage;
 }());
@@ -170,432 +158,15 @@ var ProgramacaoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 196:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinksPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var LinksPage = /** @class */ (function () {
-    function LinksPage(navCtrl) {
-        this.navCtrl = navCtrl;
-    }
-    LinksPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-links',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/links/links.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Links\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-card>\n        <ion-list>\n            <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="https://www.ufsm.br/">Site da UFSM</a>\n            </ion-card-content>\n             <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="http://w3.ufsm.br/jai/">Página da JAI</a>\n            </ion-card-content>\n\n        </ion-list>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/links/links.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
-    ], LinksPage);
-    return LinksPage;
-}());
-
-//# sourceMappingURL=links.js.map
-
-/***/ }),
-
-/***/ 197:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FavoritosPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(18);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var FavoritosPage = /** @class */ (function () {
-    function FavoritosPage(navCtrl, data, datepipe) {
-        this.navCtrl = navCtrl;
-        this.data = data;
-        this.datepipe = datepipe;
-        this.listaFavoritos = this.data.paramData;
-    }
-    FavoritosPage.prototype.removeFavorito = function (fav, e) {
-        e.stopPropagation();
-        fav.favorito = false;
-        var index = this.listaFavoritos.indexOf(fav, 0);
-        if (index > -1)
-            this.listaFavoritos.splice(index, 1);
-    };
-    FavoritosPage.prototype.dataFormatada = function (data) {
-        return this.datepipe.transform(data, 'dd/MM');
-    };
-    FavoritosPage.prototype.getDataFav = function (fav) {
-        return fav.trabalho.apresentacao.data.slice(0, 10);
-    };
-    FavoritosPage.prototype.getHoraInicioFav = function (fav) {
-        return fav.trabalho.apresentacao.data.slice(11, 16);
-    };
-    FavoritosPage.prototype.getPredioFav = function (fav) {
-        return fav.trabalho.apresentacao.predio;
-    };
-    FavoritosPage.prototype.getSalaFav = function (fav) {
-        return fav.trabalho.apresentacao.sala;
-    };
-    FavoritosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad FavoritosPage');
-    };
-    FavoritosPage.prototype.ionViewWillLeave = function () {
-        this.data.paramData = this.listaFavoritos;
-    };
-    FavoritosPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-favoritos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/favoritos/favoritos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Favoritos\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <div *ngIf="listaFavoritos?.length > 0; else empty">\n            <ion-card ion-item *ngFor="let fav of listaFavoritos">\n                <ion-card-content>\n                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>\n                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>\n                    <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>\n                    <p> Horário: {{ getHoraInicioFav(fav) }} </p>\n                    <p>Local: {{ getPredioFav(fav) }}</p>\n                    <p>Sala/Painel: {{ getSalaFav(fav) }}</p>\n                </ion-card-content>\n                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">\n                    <ion-icon color="danger" name="trash"></ion-icon>\n                </button>\n            </ion-card>\n        </div>\n        <ng-template #empty>\n            <ion-card>\n                <ion-card-content>\n                    Nenhum favorito encontrado.\n                </ion-card-content>\n            </ion-card>\n        </ng-template>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/favoritos/favoritos.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */]])
-    ], FavoritosPage);
-    return FavoritosPage;
-}());
-
-//# sourceMappingURL=favoritos.js.map
-
-/***/ }),
-
-/***/ 198:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(220);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
-/***/ 220:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_links_links__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_data_data__ = __webpack_require__(47);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-//import { StatusBar } from '@ionic-native/status-bar';
-//import { SplashScreen } from '@ionic-native/splash-screen';
-
-
-
-var AppModule = /** @class */ (function () {
-    function AppModule() {
-    }
-    AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__["a" /* ProgramacaoPage */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_links_links__["a" /* LinksPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__["a" /* FavoritosPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__["a" /* ModulosPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */]
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
-                    links: [
-                        { loadChildren: '../pages/modulos-trabalhos/modulos-trabalhos.module#ModulosTrabalhosPageModule', name: 'ModulosTrabalhosPage', segment: 'modulos-trabalhos', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/modulos/modulos.module#ModulosPageModule', name: 'ModulosPage', segment: 'modulos', priority: 'low', defaultHistory: [] }
-                    ]
-                }),
-                __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["b" /* HttpClientModule */]
-            ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__["a" /* ProgramacaoPage */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_links_links__["a" /* LinksPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__["a" /* FavoritosPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */],
-                __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__["a" /* ModulosPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */]
-            ],
-            providers: [
-                //StatusBar,
-                //SplashScreen,
-                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_12__angular_common__["d" /* DatePipe */],
-                __WEBPACK_IMPORTED_MODULE_13__providers_data_data__["a" /* DataProvider */]
-            ]
-        })
-    ], AppModule);
-    return AppModule;
-}());
-
-//# sourceMappingURL=app.module.js.map
-
-/***/ }),
-
-/***/ 267:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__ = __webpack_require__(194);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-//import { Platform } from 'ionic-angular';
-//import { StatusBar } from '@ionic-native/status-bar';
-//import { SplashScreen } from '@ionic-native/splash-screen';
-
-var MyApp = /** @class */ (function () {
-    function MyApp() {
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__["a" /* TabsPage */];
-    }
-    MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/app/app.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], MyApp);
-    return MyApp;
-}());
-
-//# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ 268:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FiltroPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the FiltroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var FiltroPage = /** @class */ (function () {
-    function FiltroPage(navCtrl, navParams, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.datas = [];
-        this.locais = [];
-        this.datas = this.navParams.data.datas;
-        this.locais = this.navParams.data.locais;
-        this.dataSelecionada = this.navParams.data.default;
-        this.localSelecionado = this.navParams.data.default;
-        this.defaultSelecionado = this.navParams.data.default;
-    }
-    FiltroPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad FiltroPage');
-    };
-    FiltroPage.prototype.aplicarFiltros = function () {
-        var levarInfo = { data: this.dataSelecionada, local: this.localSelecionado };
-        this.dismiss(levarInfo);
-    };
-    FiltroPage.prototype.dismiss = function (info) {
-        this.viewCtrl.dismiss(info);
-    };
-    FiltroPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-filtro',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/filtro/filtro.html"*/'<!--\n    Generated template for the FilterPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Filtrar programação\n        </ion-title>\n        <!--\n        <ion-buttons end>\n            <button ion-button (click)="aplicarFiltros()" strong>OK</button>\n        </ion-buttons>\n        -->\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class="outer-content">\n    <ion-list>\n        <ion-item>\n            <ion-label>Data</ion-label>\n            <ion-select interface="popover" [(ngModel)]="dataSelecionada">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let data of datas">{{ data }}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-item>\n            <ion-label>Local</ion-label>\n            <ion-select interface="popover" [(ngModel)]="localSelecionado">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let local of locais">{{ local }}</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n    <ion-row center>\n        <ion-col text-center>\n            <button ion-button outline (click)="aplicarFiltros()">\n                OK\n            </button>\n        </ion-col>\n    </ion-row>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/filtro/filtro.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ViewController */]])
-    ], FiltroPage);
-    return FiltroPage;
-}());
-
-//# sourceMappingURL=filtro.js.map
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/*
-  Generated class for the DataProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var DataProvider = /** @class */ (function () {
-    function DataProvider(http) {
-        this.http = http;
-        console.log('Hello DataProvider Provider');
-        this.paramData = [];
-    }
-    DataProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
-    ], DataProvider);
-    return DataProvider;
-}());
-
-//# sourceMappingURL=data.js.map
-
-/***/ }),
-
-/***/ 52:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(99);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var ModulosPage = /** @class */ (function () {
-    function ModulosPage(navCtrl, navParams, datepipe) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.datepipe = datepipe;
-        this.listaModulos = [];
-        this.agrupador = this.navParams.data.agrupador;
-        this.datas = this.navParams.data.datas;
-        for (var _i = 0, _a = this.agrupador.modulos; _i < _a.length; _i++) {
-            var modulo = _a[_i];
-            this.listaModulos.push(modulo);
-        }
-        this.listaModulos.sort(function (a, b) {
-            var a_ = a.nome;
-            var b_ = b.nome;
-            return (a_ < b_) ? -1 : (a_ > b_) ? 1 : 0;
-        });
-    }
-    ModulosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ModulosPage');
-    };
-    ModulosPage.prototype.toggleSection = function (i) {
-        this.listaModulos[i].open = !this.listaModulos[i].open;
-    };
-    ModulosPage.prototype.paginaModulosTrabalhos = function (i, j) {
-        this.moduloSelect = this.listaModulos[i];
-        this.dataSelect = this.datas[j];
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */], { moduloSelect: this.moduloSelect, dataSelect: this.dataSelect });
-    };
-    ModulosPage.prototype.dataFormatada = function (data) {
-        return this.datepipe.transform(data, 'dd/MM');
-    };
-    ModulosPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modulos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/'<!--\n    Generated template for the ModulosPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-title>Módulos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-list class="accordion-list">\n            <ion-list-header *ngFor="let modulo of listaModulos, let i = index" no-lines no-padding>\n                <button text-wrap ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': modulo.open, \'section\': !modulo.open}">\n                    <ion-icon item-left name="arrow-forward" *ngIf="!modulo.open"></ion-icon>\n                    <ion-icon item-left name="arrow-down" *ngIf="modulo.open"></ion-icon>\n                    {{ modulo.nome }}\n                </button>\n                <ion-list *ngIf="modulo.open" no-lines>\n                    <ion-list-header *ngFor="let data of datas; let j = index" no-padding>\n                        <button ion-item (click)="paginaModulosTrabalhos(i, j)" class="child" detail-none>\n                        {{ dataFormatada(data) }}\n                        </button>\n                    </ion-list-header>\n                </ion-list>\n            </ion-list-header>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* DatePipe */]])
-    ], ModulosPage);
-    return ModulosPage;
-}());
-
-//# sourceMappingURL=modulos.js.map
-
-/***/ }),
-
-/***/ 99:
+/***/ 195:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosTrabalhosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(18);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -740,13 +311,427 @@ var ModulosTrabalhosPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-modulos-trabalhos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>{{ moduloSelect.nome  }} - {{ dataFormatada(dataSelect) }}</ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                     <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div *ngIf="listaTrabalhosModulo.length > 0;then ok else empty"></div>\n    <ng-template #ok>\n        <div>\n            <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">\n                <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">\n                    {{ hora }}\n                </ion-segment-button>\n            </ion-segment>\n        </div>\n        <div [ngSwitch]="segmentData">\n             <ng-container *ngFor="let hora of horasInicio">\n                 <ion-list *ngSwitchCase="hora">\n                    <ng-container *ngFor="let trab of listaTrabalhosModulo">\n                    <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n        </ion-list>\n        </ng-container>\n        </div>\n    </ng-template>\n    <ng-template #empty>\n        <ion-card>\n            <ion-card-content>\n                <p>Nenhum trabalho encontrado.</p>\n            </ion-card-content>\n        </ion-card>\n    </ng-template>\n</ion-content>\n\n<!-- Usando virtualScroll (não pode ficar dentro de ngIf!); mais limitado":\n<ion-content padding>\n    <div style="height:100%">\n        <ion-list [virtualScroll]="listaTrabalhosModulo">\n                <ion-card ion-item *virtualItem="let trab">\n                    <ion-card-content>\n                        <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                        <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                        <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                        <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                        <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n                    </ion-card-content>\n                    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                        <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                </ion-card>\n        </ion-list>\n    </div>\n</ion-content>\n-->\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_4__angular_common__["d" /* DatePipe */]])
     ], ModulosTrabalhosPage);
     return ModulosTrabalhosPage;
 }());
 
 //# sourceMappingURL=modulos-trabalhos.js.map
+
+/***/ }),
+
+/***/ 196:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinksPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LinksPage = /** @class */ (function () {
+    function LinksPage(navCtrl) {
+        this.navCtrl = navCtrl;
+    }
+    LinksPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-links',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/links/links.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Links\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-card>\n        <ion-list>\n            <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="https://www.ufsm.br/">Site da UFSM</a>\n            </ion-card-content>\n             <ion-card-content>\n                <ion-icon name="link"></ion-icon>\n                <a href="http://w3.ufsm.br/jai/">Página da JAI</a>\n            </ion-card-content>\n\n        </ion-list>\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/links/links.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    ], LinksPage);
+    return LinksPage;
+}());
+
+//# sourceMappingURL=links.js.map
+
+/***/ }),
+
+/***/ 197:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FavoritosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(18);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var FavoritosPage = /** @class */ (function () {
+    function FavoritosPage(navCtrl, data, datepipe) {
+        this.navCtrl = navCtrl;
+        this.data = data;
+        this.datepipe = datepipe;
+        this.listaFavoritos = this.data.paramData;
+    }
+    FavoritosPage.prototype.removeFavorito = function (fav, e) {
+        e.stopPropagation();
+        fav.favorito = false;
+        var index = this.listaFavoritos.indexOf(fav, 0);
+        if (index > -1)
+            this.listaFavoritos.splice(index, 1);
+    };
+    FavoritosPage.prototype.dataFormatada = function (data) {
+        return this.datepipe.transform(data, 'dd/MM');
+    };
+    FavoritosPage.prototype.getDataFav = function (fav) {
+        return fav.trabalho.apresentacao.data.slice(0, 10);
+    };
+    FavoritosPage.prototype.getHoraInicioFav = function (fav) {
+        return fav.trabalho.apresentacao.data.slice(11, 16);
+    };
+    FavoritosPage.prototype.getPredioFav = function (fav) {
+        return fav.trabalho.apresentacao.predio;
+    };
+    FavoritosPage.prototype.getSalaFav = function (fav) {
+        return fav.trabalho.apresentacao.sala;
+    };
+    FavoritosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad FavoritosPage');
+    };
+    FavoritosPage.prototype.ionViewWillLeave = function () {
+        this.data.paramData = this.listaFavoritos;
+    };
+    FavoritosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-favoritos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/favoritos/favoritos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Favoritos\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <div *ngIf="listaFavoritos?.length > 0; else empty">\n            <ion-card ion-item *ngFor="let fav of listaFavoritos">\n                <ion-card-content>\n                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>\n                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>\n                    <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>\n                    <p> Horário: {{ getHoraInicioFav(fav) }} </p>\n                    <p>Local: {{ getPredioFav(fav) }}</p>\n                    <p>Sala/Painel: {{ getSalaFav(fav) }}</p>\n                </ion-card-content>\n                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">\n                    <ion-icon color="danger" name="trash"></ion-icon>\n                </button>\n            </ion-card>\n        </div>\n        <ng-template #empty>\n            <ion-card>\n                <ion-card-content>\n                    Nenhum favorito encontrado.\n                </ion-card-content>\n            </ion-card>\n        </ng-template>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/favoritos/favoritos.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */]])
+    ], FavoritosPage);
+    return FavoritosPage;
+}());
+
+//# sourceMappingURL=favoritos.js.map
+
+/***/ }),
+
+/***/ 198:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(220);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 220:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_links_links__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_data_data__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+//import { StatusBar } from '@ionic-native/status-bar';
+//import { SplashScreen } from '@ionic-native/splash-screen';
+
+
+
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__["a" /* ProgramacaoPage */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_links_links__["a" /* LinksPage */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__["a" /* FavoritosPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__["a" /* ModulosPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
+                    links: []
+                }),
+                __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["b" /* HttpClientModule */]
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_5__pages_programacao_programacao__["a" /* ProgramacaoPage */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_links_links__["a" /* LinksPage */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_favoritos_favoritos__["a" /* FavoritosPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_filtro_filtro__["a" /* FiltroPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_modulos_modulos__["a" /* ModulosPage */],
+                __WEBPACK_IMPORTED_MODULE_10__pages_modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */]
+            ],
+            providers: [
+                //StatusBar,
+                //SplashScreen,
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_12__angular_common__["d" /* DatePipe */],
+                __WEBPACK_IMPORTED_MODULE_13__providers_data_data__["a" /* DataProvider */]
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 262:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__ = __webpack_require__(193);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+//import { Platform } from 'ionic-angular';
+//import { StatusBar } from '@ionic-native/status-bar';
+//import { SplashScreen } from '@ionic-native/splash-screen';
+
+var MyApp = /** @class */ (function () {
+    function MyApp() {
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_1__pages_tabs_tabs__["a" /* TabsPage */];
+    }
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/app/app.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 268:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FiltroPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the FiltroPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var FiltroPage = /** @class */ (function () {
+    function FiltroPage(navCtrl, navParams, viewCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.datas = [];
+        this.locais = [];
+        this.datas = this.navParams.data.datas;
+        this.locais = this.navParams.data.locais;
+        this.dataSelecionada = this.navParams.data.default;
+        this.localSelecionado = this.navParams.data.default;
+        this.defaultSelecionado = this.navParams.data.default;
+    }
+    FiltroPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad FiltroPage');
+    };
+    FiltroPage.prototype.aplicarFiltros = function () {
+        var levarInfo = { data: this.dataSelecionada, local: this.localSelecionado };
+        this.dismiss(levarInfo);
+    };
+    FiltroPage.prototype.dismiss = function (info) {
+        this.viewCtrl.dismiss(info);
+    };
+    FiltroPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-filtro',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/filtro/filtro.html"*/'<!--\n    Generated template for the FilterPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-toolbar color="primary">\n        <ion-title>\n            Filtrar programação\n        </ion-title>\n        <!--\n        <ion-buttons end>\n            <button ion-button (click)="aplicarFiltros()" strong>OK</button>\n        </ion-buttons>\n        -->\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class="outer-content">\n    <ion-list>\n        <ion-item>\n            <ion-label>Data</ion-label>\n            <ion-select interface="popover" [(ngModel)]="dataSelecionada">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let data of datas">{{ data }}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-item>\n            <ion-label>Local</ion-label>\n            <ion-select interface="popover" [(ngModel)]="localSelecionado">\n                <ion-option selected>{{ defaultSelecionado }}</ion-option>\n                <ion-option *ngFor="let local of locais">{{ local }}</ion-option>\n            </ion-select>\n        </ion-item>\n    </ion-list>\n    <ion-row center>\n        <ion-col text-center>\n            <button ion-button outline (click)="aplicarFiltros()">\n                OK\n            </button>\n        </ion-col>\n    </ion-row>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/filtro/filtro.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ViewController */]])
+    ], FiltroPage);
+    return FiltroPage;
+}());
+
+//# sourceMappingURL=filtro.js.map
+
+/***/ }),
+
+/***/ 51:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the DataProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var DataProvider = /** @class */ (function () {
+    function DataProvider(http) {
+        this.http = http;
+        console.log('Hello DataProvider Provider');
+        this.paramData = [];
+    }
+    DataProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], DataProvider);
+    return DataProvider;
+}());
+
+//# sourceMappingURL=data.js.map
+
+/***/ }),
+
+/***/ 98:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModulosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ModulosPage = /** @class */ (function () {
+    function ModulosPage(navCtrl, navParams, datepipe) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.datepipe = datepipe;
+        this.listaModulos = [];
+        this.agrupador = this.navParams.data.agrupador;
+        this.datas = this.navParams.data.datas;
+        for (var _i = 0, _a = this.agrupador.modulos; _i < _a.length; _i++) {
+            var modulo = _a[_i];
+            this.listaModulos.push(modulo);
+        }
+        this.listaModulos.sort(function (a, b) {
+            var a_ = a.nome;
+            var b_ = b.nome;
+            return (a_ < b_) ? -1 : (a_ > b_) ? 1 : 0;
+        });
+    }
+    ModulosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ModulosPage');
+    };
+    ModulosPage.prototype.toggleSection = function (i) {
+        this.listaModulos[i].open = !this.listaModulos[i].open;
+    };
+    ModulosPage.prototype.paginaModulosTrabalhos = function (i, j) {
+        this.moduloSelect = this.listaModulos[i];
+        this.dataSelect = this.datas[j];
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__modulos_trabalhos_modulos_trabalhos__["a" /* ModulosTrabalhosPage */], { moduloSelect: this.moduloSelect, dataSelect: this.dataSelect });
+    };
+    ModulosPage.prototype.dataFormatada = function (data) {
+        return this.datepipe.transform(data, 'dd/MM');
+    };
+    ModulosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-modulos',template:/*ion-inline-start:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/'<!--\n    Generated template for the ModulosPage page.\n\n    See http://ionicframework.com/docs/components/#navigation for more info on\n    Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-title>Módulos</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-list class="accordion-list">\n            <ion-list-header *ngFor="let modulo of listaModulos, let i = index" no-lines no-padding>\n                <button text-wrap ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': modulo.open, \'section\': !modulo.open}">\n                    <ion-icon item-left name="arrow-forward" *ngIf="!modulo.open"></ion-icon>\n                    <ion-icon item-left name="arrow-down" *ngIf="modulo.open"></ion-icon>\n                    {{ modulo.nome }}\n                </button>\n                <ion-list *ngIf="modulo.open" no-lines>\n                    <ion-list-header *ngFor="let data of datas; let j = index" no-padding>\n                        <button ion-item (click)="paginaModulosTrabalhos(i, j)" class="child" detail-none>\n                        {{ dataFormatada(data) }}\n                        </button>\n                    </ion-list-header>\n                </ion-list>\n            </ion-list-header>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/Repos/ionic-prog-jai/src/pages/modulos/modulos.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["d" /* DatePipe */]])
+    ], ModulosPage);
+    return ModulosPage;
+}());
+
+//# sourceMappingURL=modulos.js.map
 
 /***/ })
 
