@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from "../../providers/data/data";
@@ -20,7 +20,7 @@ export class ModulosTrabalhosPage {
     public listaFavoritos: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, 
-        public data: DataProvider, public datepipe: DatePipe) {
+        public data: DataProvider, public datepipe: DatePipe, private loadingCtrl: LoadingController) {
         this.listaFavoritos = this.data.paramData;
         this.dataSelect = this.navParams.data.dataSelect;
         this.moduloSelect = this.navParams.data.moduloSelect;
@@ -28,11 +28,17 @@ export class ModulosTrabalhosPage {
         this.listaTrabalhosBkp = [];
         this.listaTrabalhosModulo = [];
 
+        let loader = this.loadingCtrl.create({
+            content: "Carregando...",
+            duration: 10000
+        });
+
         const url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" + 
                     this.dataSelect + "&modulo=" + this.moduloSelect.id;
 
-        this.trabalhosModulo = this.http.get(url);
+        loader.present()
 
+        this.trabalhosModulo = this.http.get(url);
         this.trabalhosModulo.subscribe(info => {
             for (let trabalho of info.trabalhos) {
                 this.setaFavoritos(trabalho);
@@ -41,6 +47,12 @@ export class ModulosTrabalhosPage {
             }
             this.listaTrabalhosBkp = this.listaTrabalhosModulo;
             this.segmentData = this.horasInicio[0];
+            if (this.listaTrabalhosModulo.length > 0) {
+                loader.dismiss().catch(() => {});
+            }
+        }, error => {
+            console.log(error);
+            loader.dismiss().catch(() => {});
         });
     }
 

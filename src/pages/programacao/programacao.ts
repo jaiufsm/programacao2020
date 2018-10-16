@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from "../../providers/data/data";
@@ -17,11 +17,19 @@ export class ProgramacaoPage {
     listaAgrupadores: any[];
     listaModulosID: any[];
     constructor(public navCtrl: NavController, public http: HttpClient, 
-        public data: DataProvider, public navParams: NavParams) {
+        public data: DataProvider, public navParams: NavParams, 
+        private loadingCtrl: LoadingController,) {
         this.datas = [];
         this.segmentData = "Modulos";
         this.listaAgrupadores = [];
         this.listaModulosID = [];
+
+        let loader = this.loadingCtrl.create({
+            content: "Carregando...",
+            duration: 10000
+        });
+
+        loader.present();
 
         this.trabalhos = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhos');
         this.trabalhos.subscribe(info => {
@@ -35,6 +43,9 @@ export class ProgramacaoPage {
                 var b_ = +b.slice(8,10)
                 return a_ - b_;
             });
+        }, error => {
+            console.log(error);
+            loader.dismiss().catch(() => {});
         });
 
         this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
@@ -45,7 +56,13 @@ export class ProgramacaoPage {
                 }
                 this.listaAgrupadores.push(agrupador);
             }
-        })
+            if (this.listaAgrupadores.length > 0) {
+                loader.dismiss().catch(() => {});
+            }
+        }, error => {
+            console.log(error);
+            loader.dismiss().catch(() => {});
+        });
     }
 
     paginaModulos(agrupador: any) {
