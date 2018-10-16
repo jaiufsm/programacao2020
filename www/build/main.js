@@ -109,7 +109,6 @@ var ProgramacaoPage = /** @class */ (function () {
         this.data = data;
         this.navParams = navParams;
         this.loadingCtrl = loadingCtrl;
-        this.datas = [];
         this.segmentData = "Modulos";
         this.listaAgrupadores = [];
         this.listaModulosID = [];
@@ -118,23 +117,6 @@ var ProgramacaoPage = /** @class */ (function () {
             duration: 10000
         });
         loader.present();
-        this.trabalhos = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhos');
-        this.trabalhos.subscribe(function (info) {
-            for (var _i = 0, _a = info.trabalhos; _i < _a.length; _i++) {
-                var trabalho = _a[_i];
-                var data = trabalho.trabalho.apresentacao.data;
-                if (!_this.datas.includes(data.slice(0, 10)))
-                    _this.datas.push(data.slice(0, 10));
-            }
-            _this.datas.sort(function (a, b) {
-                var a_ = +a.slice(8, 10);
-                var b_ = +b.slice(8, 10);
-                return a_ - b_;
-            });
-        }, function (error) {
-            console.log(error);
-            loader.dismiss().catch(function () { });
-        });
         this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
         this.agrupadores.subscribe(function (info) {
             for (var _i = 0, _a = info.modulos.agrupadores; _i < _a.length; _i++) {
@@ -154,7 +136,7 @@ var ProgramacaoPage = /** @class */ (function () {
         });
     }
     ProgramacaoPage.prototype.paginaModulos = function (agrupador) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__modulos_modulos__["a" /* ModulosPage */], { agrupador: agrupador, datas: this.datas });
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__modulos_modulos__["a" /* ModulosPage */], { agrupador: agrupador });
     };
     ProgramacaoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ProgramacaoPage');
@@ -665,7 +647,6 @@ var ModulosPage = /** @class */ (function () {
         this.http = http;
         this.listaModulos = [];
         this.agrupador = this.navParams.data.agrupador;
-        this.datas = this.navParams.data.datas;
         this.datas_mods = [];
         for (var _i = 0, _a = this.agrupador.modulos; _i < _a.length; _i++) {
             var modulo = _a[_i];
