@@ -10,7 +10,6 @@ import { ModulosTrabalhosPage } from './../modulos-trabalhos/modulos-trabalhos';
 })
 export class ModulosPage {
     agrupador: any;
-    datas: any[];
     listaModulos: any[];
     dataSelect: any;
     moduloSelect: any;
@@ -21,7 +20,6 @@ export class ModulosPage {
         private datepipe: DatePipe, public http: HttpClient) {
         this.listaModulos = [];
         this.agrupador = this.navParams.data.agrupador;
-        this.datas = this.navParams.data.datas;
         this.datas_mods = [];
         for (let modulo of this.agrupador.modulos) {
             this.listaModulos.push(modulo);
