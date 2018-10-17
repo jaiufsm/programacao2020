@@ -66,7 +66,7 @@ export class ModulosTrabalhosPage {
     displayError(loader, url) {
         let alert = this.alertCtrl.create({
             title: 'Ocorreu um erro!',
-            subTitle: 'Verifique a sua conexão com a internet.',
+            subTitle: 'Verifique a sua conexão com a internet e pressione OK para recarregar a página.',
             buttons: [
             {
                 text: "OK",
