@@ -20,8 +20,8 @@
 
 <ion-content padding>
     <div>
-        <ion-segment *ngIf="datas" [(ngModel)]="segmentData">
-            <ion-segment-button value="Modulos"> Agrupadores </ion-segment-button>
+        <ion-segment [(ngModel)]="segmentData">
+            <ion-segment-button value="Modulos"> Trabalhos </ion-segment-button>
         </ion-segment>
     </div>
     <div [ngSwitch]="segmentData">
