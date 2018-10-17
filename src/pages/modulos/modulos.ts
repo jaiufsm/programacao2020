@@ -20,24 +20,33 @@ export class ModulosPage {
         private datepipe: DatePipe, public http: HttpClient) {
         this.listaModulos = [];
         this.agrupador = this.navParams.data.agrupador;
-        this.datas_mods = [];
+
         for (let modulo of this.agrupador.modulos) {
             this.listaModulos.push(modulo);
         }
+
         this.listaModulos.sort(function(a, b) {
             var a_ = a.nome;
             var b_ = b.nome;
             return (a_ < b_) ? -1 : (a_ > b_) ? 1 : 0;
         });
 
+        this.getDatasModulos();
+    }
+
+    getDatasModulos() {
+        // aqui não precisa de loader pois pega os dados de um arquivo; é rápido o suficiente
+        this.datas_mods = [];
         this.datas_mods_get = this.http.get('./assets/data/datas_modulos.json');
-        
         this.datas_mods_get.subscribe(info => {
             for (let datas_mod of info.datas_modulos) {
                 this.datas_mods.push(datas_mod);
             }
-            console.log(this.datas_mods);
+        }, error => {
+            // improvável dar erro aqui, mas em todo caso...
+            console.log("ERRO: ocorreu um problema com o GET de datas_modulos.json"); 
         });
+
     }
 
     ionViewDidLoad() {

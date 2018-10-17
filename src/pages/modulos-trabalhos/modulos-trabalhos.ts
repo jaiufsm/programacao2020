@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { DataProvider } from "../../providers/data/data";
@@ -20,24 +21,29 @@ export class ModulosTrabalhosPage {
     public listaFavoritos: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, 
-        public data: DataProvider, public datepipe: DatePipe, private loadingCtrl: LoadingController) {
+        public data: DataProvider, public datepipe: DatePipe, 
+        private loadingCtrl: LoadingController, 
+        private alertCtrl: AlertController) {
         this.listaFavoritos = this.data.paramData;
         this.dataSelect = this.navParams.data.dataSelect;
         this.moduloSelect = this.navParams.data.moduloSelect;
-        this.horasInicio = [];
-        this.listaTrabalhosBkp = [];
-        this.listaTrabalhosModulo = [];
 
         let loader = this.loadingCtrl.create({
             content: "Carregando...",
-            duration: 10000
         });
 
         const url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" + 
                     this.dataSelect + "&modulo=" + this.moduloSelect.id;
 
-        loader.present()
+        //this.displayError(loader, url);
+        this.getTrabalhosModulo(url, loader);
+    }
 
+    getTrabalhosModulo(url, loader) {
+        this.horasInicio = [];
+        this.listaTrabalhosBkp = [];
+        this.listaTrabalhosModulo = [];
+        loader.present();
         this.trabalhosModulo = this.http.get(url);
         this.trabalhosModulo.subscribe(info => {
             for (let trabalho of info.trabalhos) {
@@ -51,9 +57,25 @@ export class ModulosTrabalhosPage {
                 loader.dismiss().catch(() => {});
             }
         }, error => {
-            console.log(error);
+            console.log("ERRO: ocorreu um problema com o GET");
             loader.dismiss().catch(() => {});
+            this.displayError(loader, url);
         });
+    }
+
+    displayError(loader, url) {
+        let alert = this.alertCtrl.create({
+            title: 'Ocorreu um erro!',
+            subTitle: 'Verifique a sua conexão com a internet.',
+            buttons: [
+            {
+                text: "OK",
+                handler: () => {
+                    this.getTrabalhosModulo(url, loader);
+                }
+            }]
+        });
+        alert.present();
     }
 
     putSegment(hora) {

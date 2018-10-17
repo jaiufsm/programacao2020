@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from "../../providers/data/data";
@@ -16,18 +17,22 @@ export class ProgramacaoPage {
     listaModulosID: any[];
     constructor(public navCtrl: NavController, public http: HttpClient, 
         public data: DataProvider, public navParams: NavParams, 
-        private loadingCtrl: LoadingController,) {
+        private loadingCtrl: LoadingController, 
+        private alertCtrl: AlertController) {
         this.segmentData = "Modulos";
-        this.listaAgrupadores = [];
-        this.listaModulosID = [];
 
         let loader = this.loadingCtrl.create({
             content: "Carregando...",
-            duration: 10000
         });
 
-        loader.present();
+        //this.displayError(loader);
+        this.getAgrupadores(loader);
+    }
 
+    getAgrupadores(loader) {
+        this.listaAgrupadores = [];
+        this.listaModulosID = [];
+        loader.present();
         this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
         this.agrupadores.subscribe(info => {
             for (let agrupador of info.modulos.agrupadores) {
@@ -40,9 +45,25 @@ export class ProgramacaoPage {
                 loader.dismiss().catch(() => {});
             }
         }, error => {
-            console.log(error);
+            console.log("ERRO: ocorreu um problema com o GET");
             loader.dismiss().catch(() => {});
+            this.displayError(loader);
         });
+    }
+    
+    displayError(loader) {
+        let alert = this.alertCtrl.create({
+            title: 'Ocorreu um erro!',
+            subTitle: 'Verifique a sua conexão com a internet.',
+            buttons: [
+            {
+                text: "OK",
+                handler: () => {
+                    this.getAgrupadores(loader);
+                }
+            }]
+        });
+        alert.present(); 
     }
 
     paginaModulos(agrupador: any) {
