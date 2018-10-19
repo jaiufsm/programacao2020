@@ -34,7 +34,7 @@ export class ProgramacaoPage {
         this.listaModulosID = [];
         loader.present();
         //this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
-        this.agrupadores = this.http.get('https://portal.ufsm.br/jai/avaliacaoRest/findModulos.json');
+        this.agrupadores = this.http.get('/jai/avaliacaoRest/findModulos.json');
         this.agrupadores.subscribe(info => {
             //for (let agrupador of info.modulos.agrupadores) {
             for (let agrupador of info.agrupadores) {

@@ -32,7 +32,7 @@ export class ModulosTrabalhosPage {
             content: "Carregando...",
         });
 
-        const url = "https://portal.ufsm.br/jai/avaliacaoRest/findTrabalhosModulo.json?data=" + 
+        const url = "/jai/avaliacaoRest/findTrabalhosModulo.json?data=" + 
                     this.dataSelect + "&modulo=" + this.moduloSelect.id;
 
         //this.displayError(loader, url);
@@ -52,10 +52,15 @@ export class ModulosTrabalhosPage {
                 this.addHora(trabalho); 
             }
             this.listaTrabalhosBkp = this.listaTrabalhosModulo;
-            this.segmentData = this.horasInicio[0];
             if (this.listaTrabalhosModulo.length > 0) {
                 loader.dismiss().catch(() => {});
             }
+            this.horasInicio.sort(function(a, b) {
+                var a_ = +a.slice(0,2)
+                var b_ = +b.slice(0,2)
+                return +a_ - +b_;
+            });
+            this.segmentData = this.horasInicio[0];
         }, error => {
             console.log("ERRO: ocorreu um problema com o GET");
             loader.dismiss().catch(() => {});
