@@ -35,7 +35,7 @@ export class ModulosPage {
     }
 
     getDatasModulos() {
-        // aqui não precisa de loader pois pega os dados de um arquivo; é rápido o suficiente
+        // Aqui não precisa de loader pois pega os dados de um arquivo; é rápido o suficiente
         this.datas_mods = [];
         this.datas_mods_get = this.http.get('./assets/data/datas_modulos.json');
         this.datas_mods_get.subscribe(info => {
