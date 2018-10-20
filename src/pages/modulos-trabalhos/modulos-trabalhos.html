@@ -11,7 +11,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <div>
         <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">
             <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">
