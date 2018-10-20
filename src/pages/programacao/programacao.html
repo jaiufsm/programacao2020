@@ -4,10 +4,12 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <div>
         <ion-segment [(ngModel)]="segmentData">
             <ion-segment-button value="Modulos"> Trabalhos </ion-segment-button>
+            <ion-segment-button value="Palestras"> Palestras </ion-segment-button>
+            <ion-segment-button value="Eventos"> Eventos </ion-segment-button>
         </ion-segment>
     </div>
     <div [ngSwitch]="segmentData">
@@ -15,6 +17,42 @@
             <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">
                 {{ agrupador.nome  }}
             </button>
+        </ion-list>
+        <ion-list *ngSwitchCase="'Palestras'">
+            <ion-item-group *ngFor="let data of listaDatas">
+                <ion-item-divider color="light">{{dataFormatada(data)}}</ion-item-divider>
+                <ng-container *ngFor="let palestra of listaPalestras">
+                    <ion-card ion-item *ngIf="palestra.data.slice(0,10) == data">
+                        <ion-card-content>
+                            <h2 text-wrap> {{ palestra.nome }} </h2>
+                            <p text-wrap> &mdash; {{ palestra.apresentador }} </p>
+                            <p text-wrap>Área: {{ palestra.area }} </p>
+                            <p text-wrap>Horário: {{ palestra.data.slice(11,16) }} </p>
+                            <p text-wrap>Predio: {{ palestra.predio }} </p>
+                            <p text-wrap>Sala: {{ palestra.sala }} </p>
+                        </ion-card-content>
+                        <button ion-button clear icon-only item-end (click)="favorito(palestra, listaPalestrasFavs, $event)">
+                            <ion-icon color="danger" [name]="palestra.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+                        </button>
+                    </ion-card>
+                </ng-container>
+            </ion-item-group>
+        </ion-list>
+        <ion-list *ngSwitchCase="'Eventos'">
+            <ng-container *ngFor="let evento of listaEventos">
+                <ion-card ion-item>
+                    <ion-card-content>
+                        <h2 text-wrap> {{ evento.nome }} </h2>
+                        <p>
+                            <ion-icon name="link"></ion-icon>
+                            <a target="_blank" href="{{ evento.link }}"> Clique aqui para saber mais </a>
+                        </p>
+                    </ion-card-content>
+                    <button ion-button clear icon-only item-end (click)="favorito(evento, listaEventosFavs, $event)">
+                        <ion-icon color="danger" [name]="evento.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+                    </button>
+                </ion-card>
+            </ng-container>
         </ion-list>
     </div>
 </ion-content>

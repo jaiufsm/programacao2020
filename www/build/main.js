@@ -87,6 +87,7 @@ var TabsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_modulos__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -102,20 +103,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProgramacaoPage = /** @class */ (function () {
-    function ProgramacaoPage(navCtrl, http, data, navParams, loadingCtrl, alertCtrl) {
+    function ProgramacaoPage(navCtrl, http, data, navParams, loadingCtrl, alertCtrl, datepipe) {
         this.navCtrl = navCtrl;
         this.http = http;
         this.data = data;
         this.navParams = navParams;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
+        this.datepipe = datepipe;
         this.segmentData = "Modulos";
+        this.listaDatas = [];
+        this.listaPalestrasFavs = this.data.paramData2;
+        this.listaEventosFavs = this.data.paramData3;
         var loader = this.loadingCtrl.create({
             content: "Carregando...",
         });
         //this.displayError(loader);
         this.getAgrupadores(loader);
+        this.getPalestras();
+        this.getEventos();
     }
     ProgramacaoPage.prototype.getAgrupadores = function (loader) {
         var _this = this;
@@ -138,10 +146,51 @@ var ProgramacaoPage = /** @class */ (function () {
                 loader.dismiss().catch(function () { });
             }
         }, function (error) {
-            console.log("ERRO: ocorreu um problema com o GET");
+            console.log("ERRO: ocorreu um problema com o GET dos agrupadores");
             loader.dismiss().catch(function () { });
             _this.displayError(loader);
         });
+    };
+    ProgramacaoPage.prototype.getPalestras = function () {
+        var _this = this;
+        this.listaPalestras = [];
+        this.palestras = this.http.get('./assets/data/palestras.json');
+        this.palestras.subscribe(function (info) {
+            for (var _i = 0, _a = info.palestras; _i < _a.length; _i++) {
+                var palestra = _a[_i];
+                _this.listaPalestras.push(palestra);
+                _this.addData(palestra.data.slice(0, 10));
+            }
+        });
+    };
+    ProgramacaoPage.prototype.getEventos = function () {
+        var _this = this;
+        this.listaEventos = [];
+        this.eventos = this.http.get('./assets/data/eventos.json');
+        this.eventos.subscribe(function (info) {
+            for (var _i = 0, _a = info.eventos; _i < _a.length; _i++) {
+                var evento = _a[_i];
+                _this.listaEventos.push(evento);
+            }
+        });
+    };
+    ProgramacaoPage.prototype.favorito = function (obj, listaFavs, e) {
+        e.stopPropagation();
+        if (!obj.favorito) {
+            obj.favorito = true;
+            listaFavs.push(obj);
+        }
+        else {
+            obj.favorito = false;
+            var index = listaFavs.indexOf(obj, 0);
+            if (index > -1)
+                listaFavs.splice(index, 1);
+        }
+    };
+    ProgramacaoPage.prototype.addData = function (data) {
+        if (this.listaDatas.indexOf(data) === -1) {
+            this.listaDatas.push(data);
+        }
     };
     ProgramacaoPage.prototype.displayError = function (loader) {
         var _this = this;
@@ -162,17 +211,25 @@ var ProgramacaoPage = /** @class */ (function () {
     ProgramacaoPage.prototype.paginaModulos = function (agrupador) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__modulos_modulos__["a" /* ModulosPage */], { agrupador: agrupador });
     };
+    ProgramacaoPage.prototype.dataFormatada = function (data) {
+        return this.datepipe.transform(data, 'dd/MM');
+    };
     ProgramacaoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ProgramacaoPage');
     };
+    ProgramacaoPage.prototype.ionViewWillLeave = function () {
+        this.data.paramData2 = this.listaPalestrasFavs;
+        this.data.paramData3 = this.listaEventosFavs;
+    };
     ProgramacaoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-programacao',template:/*ion-inline-start:"/home/probst/prog-jai2/src/pages/programacao/programacao.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> JAI - Programação </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment [(ngModel)]="segmentData">\n            <ion-segment-button value="Modulos"> Trabalhos </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ion-list *ngSwitchCase="\'Modulos\'">\n            <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">\n                {{ agrupador.nome  }}\n            </button>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai2/src/pages/programacao/programacao.html"*/
+            selector: 'page-programacao',template:/*ion-inline-start:"/home/probst/prog-jai2/src/pages/programacao/programacao.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> JAI - Programação </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div>\n        <ion-segment [(ngModel)]="segmentData">\n            <ion-segment-button value="Modulos"> Trabalhos </ion-segment-button>\n            <ion-segment-button value="Palestras"> Palestras </ion-segment-button>\n            <ion-segment-button value="Eventos"> Eventos </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ion-list *ngSwitchCase="\'Modulos\'">\n            <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">\n                {{ agrupador.nome  }}\n            </button>\n        </ion-list>\n        <ion-list *ngSwitchCase="\'Palestras\'">\n            <ion-item-group *ngFor="let data of listaDatas">\n                <ion-item-divider color="light">{{dataFormatada(data)}}</ion-item-divider>\n                <ng-container *ngFor="let palestra of listaPalestras">\n                    <ion-card ion-item *ngIf="palestra.data.slice(0,10) == data">\n                        <ion-card-content>\n                            <h2 text-wrap> {{ palestra.nome }} </h2>\n                            <p text-wrap> &mdash; {{ palestra.apresentador }} </p>\n                            <p text-wrap>Área: {{ palestra.area }} </p>\n                            <p text-wrap>Horário: {{ palestra.data.slice(11,16) }} </p>\n                            <p text-wrap>Predio: {{ palestra.predio }} </p>\n                            <p text-wrap>Sala: {{ palestra.sala }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(palestra, listaPalestrasFavs, $event)">\n                            <ion-icon color="danger" [name]="palestra.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-item-group>\n        </ion-list>\n        <ion-list *ngSwitchCase="\'Eventos\'">\n            <ng-container *ngFor="let evento of listaEventos">\n                <ion-card ion-item>\n                    <ion-card-content>\n                        <h2 text-wrap> {{ evento.nome }} </h2>\n                        <p>\n                            <ion-icon name="link"></ion-icon>\n                            <a target="_blank" href="{{ evento.link }}"> Clique aqui para saber mais </a>\n                        </p>\n                    </ion-card-content>\n                    <button ion-button clear icon-only item-end (click)="favorito(evento, listaEventosFavs, $event)">\n                        <ion-icon color="danger" [name]="evento.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                    </button>\n                </ion-card>\n            </ng-container>\n        </ion-list>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai2/src/pages/programacao/programacao.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["d" /* DatePipe */]])
     ], ProgramacaoPage);
     return ProgramacaoPage;
 }());
@@ -190,7 +247,7 @@ var ProgramacaoPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -371,12 +428,14 @@ var ModulosTrabalhosPage = /** @class */ (function () {
     };
     ModulosTrabalhosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modulos-trabalhos',template:/*ion-inline-start:"/home/probst/prog-jai2/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> {{ dataFormatada(dataSelect) }} - {{ moduloSelect.nome  }}</ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                    <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">\n            <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">\n                {{ hora }}\n            </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ng-container *ngFor="let hora of horasInicio">\n            <ion-list *ngSwitchCase="hora">\n                <ng-container *ngFor="let trab of listaTrabalhosModulo">\n                    <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-list>\n        </ng-container>\n    </div>\n</ion-content>\n\n<!-- Usando virtualScroll (não pode ficar dentro de ngIf!); mais limitado":\n    <ion-content padding>\n    <div style="height:100%">\n    <ion-list [virtualScroll]="listaTrabalhosModulo">\n    <ion-card ion-item *virtualItem="let trab">\n    <ion-card-content>\n    <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n    <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n    <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n    <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n    <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n    </ion-card-content>\n    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n    <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n    </button>\n    </ion-card>\n    </ion-list>\n    </div>\n    </ion-content>\n-->\n'/*ion-inline-end:"/home/probst/prog-jai2/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/,
+            selector: 'page-modulos-trabalhos',template:/*ion-inline-start:"/home/probst/prog-jai2/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title> {{ dataFormatada(dataSelect) }} - {{ moduloSelect.nome  }}</ion-title>\n        <ion-toolbar>\n            <ion-row>\n                <ion-col>\n                    <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>\n                </ion-col>\n            </ion-row>\n        </ion-toolbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <div>\n        <ion-segment *ngIf="horasInicio" [(ngModel)]="segmentData">\n            <ion-segment-button *ngFor="let hora of horasInicio" value="{{ hora }}" (click)="putSegment(hora)">\n                {{ hora }}\n            </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ng-container *ngFor="let hora of horasInicio">\n            <ion-list *ngSwitchCase="hora">\n                <ng-container *ngFor="let trab of listaTrabalhosModulo">\n                    <ion-card ion-item *ngIf="getHoraInicioTrabalho(trab) == hora">\n                        <ion-card-content>\n                            <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n                            <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n                            <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n                            <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n                            <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n                        </ion-card-content>\n                        <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n                            <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n                        </button>\n                    </ion-card>\n                </ng-container>\n            </ion-list>\n        </ng-container>\n    </div>\n</ion-content>\n\n<!-- Usando virtualScroll (não pode ficar dentro de ngIf!); mais limitado":\n    <ion-content padding>\n    <div style="height:100%">\n    <ion-list [virtualScroll]="listaTrabalhosModulo">\n    <ion-card ion-item *virtualItem="let trab">\n    <ion-card-content>\n    <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>\n    <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>\n    <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>\n    <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>\n    <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>\n    </ion-card-content>\n    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">\n    <ion-icon color="danger" [name]="trab.favorito ? \'heart\' : \'heart-outline\'"></ion-icon>\n    </button>\n    </ion-card>\n    </ion-list>\n    </div>\n    </ion-content>\n-->\n'/*ion-inline-end:"/home/probst/prog-jai2/src/pages/modulos-trabalhos/modulos-trabalhos.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_common__["d" /* DatePipe */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_common__["d" /* DatePipe */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_4__angular_common__["d" /* DatePipe */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], ModulosTrabalhosPage);
     return ModulosTrabalhosPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=modulos-trabalhos.js.map
@@ -426,7 +485,7 @@ var LinksPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -445,14 +504,19 @@ var FavoritosPage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.data = data;
         this.datepipe = datepipe;
-        this.listaFavoritos = this.data.paramData;
+        this.listaTrabalhosFavs = this.data.paramData;
+        this.listaPalestrasFavs = this.data.paramData2;
+        this.listaEventosFavs = this.data.paramData3;
+        this.segmentData = "Trabalhos";
     }
-    FavoritosPage.prototype.removeFavorito = function (fav, e) {
+    FavoritosPage.prototype.removeFavorito = function (fav, listaFavs, e) {
         e.stopPropagation();
         fav.favorito = false;
-        var index = this.listaFavoritos.indexOf(fav, 0);
+        //const index = this.listaFavoritos.indexOf(fav, 0);
+        //if (index > -1) this.listaFavoritos.splice(index, 1);
+        var index = listaFavs.indexOf(fav, 0);
         if (index > -1)
-            this.listaFavoritos.splice(index, 1);
+            listaFavs.splice(index, 1);
     };
     FavoritosPage.prototype.dataFormatada = function (data) {
         return this.datepipe.transform(data, 'dd/MM');
@@ -473,13 +537,16 @@ var FavoritosPage = /** @class */ (function () {
         console.log('ionViewDidLoad FavoritosPage');
     };
     FavoritosPage.prototype.ionViewWillLeave = function () {
-        this.data.paramData = this.listaFavoritos;
+        this.data.paramData = this.listaTrabalhosFavs;
+        this.data.paramData2 = this.listaPalestrasFavs;
+        this.data.paramData3 = this.listaEventosFavs;
     };
     FavoritosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-favoritos',template:/*ion-inline-start:"/home/probst/prog-jai2/src/pages/favoritos/favoritos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Favoritos\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <div *ngIf="listaFavoritos?.length > 0; else empty">\n            <ion-card ion-item *ngFor="let fav of listaFavoritos">\n                <ion-card-content>\n                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>\n                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>\n                    <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>\n                    <p> Horário: {{ getHoraInicioFav(fav) }} </p>\n                    <p> Local: {{ getPredioFav(fav) }} </p>\n                    <p> {{ getSalaFav(fav) }} </p>\n                </ion-card-content>\n                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">\n                    <ion-icon color="danger" name="trash"></ion-icon>\n                </button>\n            </ion-card>\n        </div>\n        <ng-template #empty>\n            <ion-card>\n                <ion-card-content>\n                    Nenhum favorito encontrado.\n                </ion-card-content>\n            </ion-card>\n        </ng-template>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai2/src/pages/favoritos/favoritos.html"*/
+            selector: 'page-favoritos',template:/*ion-inline-start:"/home/probst/prog-jai2/src/pages/favoritos/favoritos.html"*/'<ion-header>\n    <ion-navbar color="primary">\n        <ion-title>\n            JAI - Favoritos\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div>\n        <ion-segment [(ngModel)]="segmentData">\n            <ion-segment-button value="Trabalhos"> Trabalhos </ion-segment-button>\n            <ion-segment-button value="Palestras"> Palestras </ion-segment-button>\n            <ion-segment-button value="Eventos"> Eventos </ion-segment-button>\n        </ion-segment>\n    </div>\n    <div [ngSwitch]="segmentData">\n        <ion-list *ngSwitchCase="\'Trabalhos\'">\n            <div *ngIf="listaTrabalhosFavs?.length > 0; else empty">\n                <ion-card ion-item *ngFor="let fav of listaTrabalhosFavs">\n                    <ion-card-content>\n                        <h2 text-wrap> {{ fav.trabalho.titulo }} </h2>\n                        <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>\n                        <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>\n                        <p> Horário: {{ getHoraInicioFav(fav) }} </p>\n                        <p> Local: {{ getPredioFav(fav) }} </p>\n                        <p> Sala/Painel: {{ getSalaFav(fav) }} </p>\n                    </ion-card-content>\n                    <button ion-button clear icon-only item-end (click)="removeFavorito(fav, listaTrabalhosFavs, $event)">\n                        <ion-icon color="danger" name="trash"></ion-icon>\n                    </button>\n                </ion-card>\n            </div>\n            <ng-template #empty>\n                <ion-card>\n                    <ion-card-content>\n                        Nenhum favorito encontrado.\n                    </ion-card-content>\n                </ion-card>\n            </ng-template>\n        </ion-list>\n        <ion-list *ngSwitchCase="\'Palestras\'">\n            <div *ngIf="listaPalestrasFavs?.length > 0; else empty">\n                <ion-card ion-item *ngFor="let fav of listaPalestrasFavs">\n                    <ion-card-content>\n                        <h2 text-wrap> {{ fav.nome }} </h2>\n                        <p text-wrap> &mdash; {{ fav.apresentador }} </p>\n                        <p text-wrap> Área: {{ fav.area }} </p>\n                        <p> Data: {{ dataFormatada(fav.data.slice(0,10)) }}</p>\n                        <p> Horário: {{ fav.data.slice(11,16) }} </p>\n                        <p> Prédio: {{ fav.predio }} </p>\n                        <p> Sala: {{ fav.sala }} </p>\n                    </ion-card-content>\n                    <button ion-button clear icon-only item-end (click)="removeFavorito(fav, listaPalestrasFavs, $event)">\n                        <ion-icon color="danger" name="trash"></ion-icon>\n                    </button>\n                </ion-card>\n            </div>\n            <ng-template #empty>\n                <ion-card>\n                    <ion-card-content>\n                        Nenhum favorito encontrado.\n                    </ion-card-content>\n                </ion-card>\n            </ng-template>\n        </ion-list>\n        <ion-list *ngSwitchCase="\'Eventos\'">\n            <div *ngIf="listaEventosFavs?.length > 0; else empty">\n                <ion-card ion-item *ngFor="let fav of listaEventosFavs">\n                    <ion-card-content>\n                        <h2 text-wrap> {{ fav.nome }} </h2>\n                        <p text-wrap> {{ fav.apresentador }} </p>\n                        <p>\n                            <ion-icon name="link"></ion-icon>\n                            <a target="_blank" href="{{ fav.link }}"> Clique aqui para saber mais </a>\n                        </p>\n                    </ion-card-content>\n                    <button ion-button clear icon-only item-end (click)="removeFavorito(fav, listaEventosFavs, $event)">\n                        <ion-icon color="danger" name="trash"></ion-icon>\n                    </button>\n                </ion-card>\n            </div>\n            <ng-template #empty>\n                <ion-card>\n                    <ion-card-content>\n                        Nenhum favorito encontrado.\n                    </ion-card-content>\n                </ion-card>\n            </ng-template>\n        </ion-list>\n\n    </div>\n</ion-content>\n'/*ion-inline-end:"/home/probst/prog-jai2/src/pages/favoritos/favoritos.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* DataProvider */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* DataProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common__["d" /* DatePipe */]])
     ], FavoritosPage);
     return FavoritosPage;
 }());
@@ -518,7 +585,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_modulos_modulos__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_data_data__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -643,17 +710,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/*
-  Generated class for the DataProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 var DataProvider = /** @class */ (function () {
     function DataProvider(http) {
         this.http = http;
         console.log('Hello DataProvider Provider');
         this.paramData = [];
+        this.paramData2 = [];
+        this.paramData3 = [];
     }
     DataProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
@@ -674,7 +737,7 @@ var DataProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modulos_trabalhos_modulos_trabalhos__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

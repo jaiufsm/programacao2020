@@ -7,28 +7,87 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <div *ngIf="listaFavoritos?.length > 0; else empty">
-            <ion-card ion-item *ngFor="let fav of listaFavoritos">
-                <ion-card-content>
-                    <h3 text-wrap> {{ fav.trabalho.titulo }} </h3>
-                    <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>
-                    <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>
-                    <p> Horário: {{ getHoraInicioFav(fav) }} </p>
-                    <p> Local: {{ getPredioFav(fav) }} </p>
-                    <p> {{ getSalaFav(fav) }} </p>
-                </ion-card-content>
-                <button ion-button clear icon-only item-end (click)="removeFavorito(fav, $event)">
-                    <ion-icon color="danger" name="trash"></ion-icon>
-                </button>
-            </ion-card>
-        </div>
-        <ng-template #empty>
-            <ion-card>
-                <ion-card-content>
-                    Nenhum favorito encontrado.
-                </ion-card-content>
-            </ion-card>
-        </ng-template>
-    </ion-list>
+    <div>
+        <ion-segment [(ngModel)]="segmentData">
+            <ion-segment-button value="Trabalhos"> Trabalhos </ion-segment-button>
+            <ion-segment-button value="Palestras"> Palestras </ion-segment-button>
+            <ion-segment-button value="Eventos"> Eventos </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div [ngSwitch]="segmentData">
+        <ion-list *ngSwitchCase="'Trabalhos'">
+            <div *ngIf="listaTrabalhosFavs?.length > 0; else empty">
+                <ion-card ion-item *ngFor="let fav of listaTrabalhosFavs">
+                    <ion-card-content>
+                        <h2 text-wrap> {{ fav.trabalho.titulo }} </h2>
+                        <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>
+                        <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>
+                        <p> Horário: {{ getHoraInicioFav(fav) }} </p>
+                        <p> Local: {{ getPredioFav(fav) }} </p>
+                        <p> Sala/Painel: {{ getSalaFav(fav) }} </p>
+                    </ion-card-content>
+                    <button ion-button clear icon-only item-end (click)="removeFavorito(fav, listaTrabalhosFavs, $event)">
+                        <ion-icon color="danger" name="trash"></ion-icon>
+                    </button>
+                </ion-card>
+            </div>
+            <ng-template #empty>
+                <ion-card>
+                    <ion-card-content>
+                        Nenhum favorito encontrado.
+                    </ion-card-content>
+                </ion-card>
+            </ng-template>
+        </ion-list>
+        <ion-list *ngSwitchCase="'Palestras'">
+            <div *ngIf="listaPalestrasFavs?.length > 0; else empty">
+                <ion-card ion-item *ngFor="let fav of listaPalestrasFavs">
+                    <ion-card-content>
+                        <h2 text-wrap> {{ fav.nome }} </h2>
+                        <p text-wrap> &mdash; {{ fav.apresentador }} </p>
+                        <p text-wrap> Área: {{ fav.area }} </p>
+                        <p> Data: {{ dataFormatada(fav.data.slice(0,10)) }}</p>
+                        <p> Horário: {{ fav.data.slice(11,16) }} </p>
+                        <p> Prédio: {{ fav.predio }} </p>
+                        <p> Sala: {{ fav.sala }} </p>
+                    </ion-card-content>
+                    <button ion-button clear icon-only item-end (click)="removeFavorito(fav, listaPalestrasFavs, $event)">
+                        <ion-icon color="danger" name="trash"></ion-icon>
+                    </button>
+                </ion-card>
+            </div>
+            <ng-template #empty>
+                <ion-card>
+                    <ion-card-content>
+                        Nenhum favorito encontrado.
+                    </ion-card-content>
+                </ion-card>
+            </ng-template>
+        </ion-list>
+        <ion-list *ngSwitchCase="'Eventos'">
+            <div *ngIf="listaEventosFavs?.length > 0; else empty">
+                <ion-card ion-item *ngFor="let fav of listaEventosFavs">
+                    <ion-card-content>
+                        <h2 text-wrap> {{ fav.nome }} </h2>
+                        <p text-wrap> {{ fav.apresentador }} </p>
+                        <p>
+                            <ion-icon name="link"></ion-icon>
+                            <a target="_blank" href="{{ fav.link }}"> Clique aqui para saber mais </a>
+                        </p>
+                    </ion-card-content>
+                    <button ion-button clear icon-only item-end (click)="removeFavorito(fav, listaEventosFavs, $event)">
+                        <ion-icon color="danger" name="trash"></ion-icon>
+                    </button>
+                </ion-card>
+            </div>
+            <ng-template #empty>
+                <ion-card>
+                    <ion-card-content>
+                        Nenhum favorito encontrado.
+                    </ion-card-content>
+                </ion-card>
+            </ng-template>
+        </ion-list>
+
+    </div>
 </ion-content>

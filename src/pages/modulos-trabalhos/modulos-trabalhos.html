@@ -29,7 +29,7 @@
                             <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>
                             <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>
                             <p text-wrap> Local: {{ getPredioTrabalho(trab) }} </p>
-                            <p text-wrap> {{ getSalaTrabalho(trab) }} </p>
+                            <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>
                         </ion-card-content>
                         <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">
                             <ion-icon color="danger" [name]="trab.favorito ? 'heart' : 'heart-outline'"></ion-icon>
