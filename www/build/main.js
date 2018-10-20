@@ -122,12 +122,12 @@ var ProgramacaoPage = /** @class */ (function () {
         this.listaAgrupadores = [];
         this.listaModulosID = [];
         loader.present();
-        //this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
-        this.agrupadores = this.http.get('/jai/avaliacaoRest/findModulos.json');
+        this.agrupadores = this.http.get('https://api-jai.herokuapp.com/jai/avaliacaoRest/findModulos');
+        //this.agrupadores = this.http.get('https://portal.ufsm.br/jai/avaliacaoRest/findModulos.json',  {headers: headers});
         this.agrupadores.subscribe(function (info) {
-            //for (let agrupador of info.modulos.agrupadores) {
-            for (var _i = 0, _a = info.agrupadores; _i < _a.length; _i++) {
+            for (var _i = 0, _a = info.modulos.agrupadores; _i < _a.length; _i++) {
                 var agrupador = _a[_i];
+                //for (let agrupador of info.agrupadores) {
                 for (var _b = 0, _c = agrupador.modulos; _b < _c.length; _b++) {
                     var modulo = _c[_b];
                     _this.listaModulosID.push(modulo.id);
@@ -221,7 +221,7 @@ var ModulosTrabalhosPage = /** @class */ (function () {
         var loader = this.loadingCtrl.create({
             content: "Carregando...",
         });
-        var url = "/jai/avaliacaoRest/findTrabalhosModulo.json?data=" +
+        var url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" +
             this.dataSelect + "&modulo=" + this.moduloSelect.id;
         //this.displayError(loader, url);
         this.getTrabalhosModulo(url, loader);

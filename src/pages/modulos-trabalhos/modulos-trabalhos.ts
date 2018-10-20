@@ -32,7 +32,7 @@ export class ModulosTrabalhosPage {
             content: "Carregando...",
         });
 
-        const url = "/jai/avaliacaoRest/findTrabalhosModulo.json?data=" + 
+        const url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" + 
                     this.dataSelect + "&modulo=" + this.moduloSelect.id;
 
         //this.displayError(loader, url);
