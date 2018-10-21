@@ -21,6 +21,7 @@
                     <ion-card-content>
                         <h2 text-wrap> {{ fav.trabalho.titulo }} </h2>
                         <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>
+                        <p text-wrap> Evento: {{ fav.trabalho.evento }} </p>
                         <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>
                         <p> Horário: {{ getHoraInicioFav(fav) }} </p>
                         <p text-wrap> Prédio/Local: {{ getPredioFav(fav) }} </p>
