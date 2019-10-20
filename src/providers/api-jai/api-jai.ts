@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiJaiProvider {
 
-  private url = 'https://script.google.com/macros/s/AKfycbxhE2ls-gS-s51A_16OcVMlRdJWcEIPQJPSplTNVfK5hlZn1s-C/exec';
+  private url = 'https://script.google.com/macros/s/AKfycbzdEAUndj-OtgytCTu59HZn2xOefjB9kOTEHjTDms6UQ8hpLX0/exec';
   private trabalhos = null;
   
   constructor() {
