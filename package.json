@@ -6,7 +6,7 @@
   "private": true,
   "config": {
     "ionic_www_dir": "docs",
-    "ionic_build_dir": "docs"
+    "ionic_build_dir": "docs/build"
   },
   "scripts": {
     "start": "node www/server.js",
