@@ -12,9 +12,8 @@ import { ModulosTrabalhosPage } from './../pages/modulos-trabalhos/modulos-traba
 
 //import { StatusBar } from '@ionic-native/status-bar';
 //import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpClientModule } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
 import { DataProvider } from '../providers/data/data';
+import { ApiJaiProvider } from '../providers/api-jai/api-jai';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { DataProvider } from '../providers/data/data';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    HttpClientModule
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,8 +43,8 @@ import { DataProvider } from '../providers/data/data';
     //StatusBar,
     //SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatePipe,
-    DataProvider
+    DataProvider,
+    ApiJaiProvider
   ]
 })
 export class AppModule {}

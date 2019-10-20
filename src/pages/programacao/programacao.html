@@ -20,14 +20,14 @@
         </ion-list>
         <ion-list *ngSwitchCase="'Palestras'">
             <ion-item-group *ngFor="let data of listaDatas">
-                <ion-item-divider color="light">{{dataFormatada(data)}}</ion-item-divider>
+                <ion-item-divider color="light">{{data}}</ion-item-divider>
                 <ng-container *ngFor="let palestra of listaPalestras">
-                    <ion-card ion-item *ngIf="palestra.data.slice(0,10) == data">
+                    <ion-card ion-item *ngIf="palestra.data == data">
                         <ion-card-content>
                             <h2 text-wrap> {{ palestra.nome }} </h2>
                             <p text-wrap> &mdash; {{ palestra.apresentador }} </p>
-                            <p text-wrap>Área: {{ palestra.area }} </p>
-                            <p text-wrap>Horário: {{ palestra.data.slice(11,16) }} </p>
+                            <!--p text-wrap>Área: {{ palestra.area }} </p-->
+                            <p text-wrap>Horário: {{ palestra.data }} </p>
                             <p text-wrap>Predio: {{ palestra.predio }} </p>
                             <p text-wrap>Sala: {{ palestra.sala }} </p>
                         </ion-card-content>

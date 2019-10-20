@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DataProvider } from "../../providers/data/data";
-import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'page-favoritos',
@@ -13,8 +12,7 @@ export class FavoritosPage {
     public listaEventosFavs: any;
     segmentData: string;
 
-    constructor(public navCtrl: NavController, public data: DataProvider, 
-        public datepipe: DatePipe) {
+    constructor(public navCtrl: NavController, public data: DataProvider) {
         this.listaTrabalhosFavs = this.data.paramData;
         this.listaPalestrasFavs = this.data.paramData2;
         this.listaEventosFavs = this.data.paramData3;
@@ -31,16 +29,12 @@ export class FavoritosPage {
 
     }
 
-    dataFormatada(data) {
-        return this.datepipe.transform(data, 'dd/MM');
-    }
-
     getDataFav(fav) {
-        return fav.trabalho.apresentacao.data.slice(0,10);
+        return fav.trabalho.apresentacao.data;
     }
 
     getHoraInicioFav(fav) {
-        return fav.trabalho.apresentacao.data.slice(11, 16);
+        return fav.trabalho.apresentacao.hora.slice(0, 5);
     }
 
     getPredioFav(fav) {

@@ -22,7 +22,7 @@
                         <h2 text-wrap> {{ fav.trabalho.titulo }} </h2>
                         <p text-wrap> &mdash; {{ fav.trabalho.apresentador }} </p>
                         <p text-wrap> Evento: {{ fav.trabalho.evento }} </p>
-                        <p> Data: {{ dataFormatada(getDataFav(fav)) }} </p>
+                        <p> Data: {{ getDataFav(fav) }} </p>
                         <p> Horário: {{ getHoraInicioFav(fav) }} </p>
                         <p text-wrap> Prédio/Local: {{ getPredioFav(fav) }} </p>
                         <p> Sala/Painel: {{ getSalaFav(fav) }} </p>
@@ -47,8 +47,8 @@
                         <h2 text-wrap> {{ fav.nome }} </h2>
                         <p text-wrap> &mdash; {{ fav.apresentador }} </p>
                         <p text-wrap> Área: {{ fav.area }} </p>
-                        <p> Data: {{ dataFormatada(fav.data.slice(0,10)) }}</p>
-                        <p> Horário: {{ fav.data.slice(11,16) }} </p>
+                        <p> Data: {{ fav.data }}</p>
+                        <p> Horário: {{ fav.hora.slice(0, 5) }} </p>
                         <p> Prédio: {{ fav.predio }} </p>
                         <p> Sala: {{ fav.sala }} </p>
                     </ion-card-content>

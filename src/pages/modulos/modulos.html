@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>Módulos</ion-title>
     </ion-navbar>
 </ion-header>
@@ -8,21 +8,18 @@
     <div>
         <ion-list class="accordion-list">
             <ion-list-header *ngFor="let modulo of listaModulos, let i = index" no-lines no-padding>
-                <button text-wrap ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': modulo.open, 'section': !modulo.open}">
+                <button text-wrap ion-item (click)="toggleSection(i)" detail-none
+                    [ngClass]="{'section-active': modulo.open, 'section': !modulo.open}">
                     <ion-icon item-left name="arrow-forward" *ngIf="!modulo.open"></ion-icon>
                     <ion-icon item-left name="arrow-down" *ngIf="modulo.open"></ion-icon>
                     {{ modulo.nome }}
                 </button>
                 <ion-list *ngIf="modulo.open" no-lines>
-                    <ng-container *ngFor="let data_mod of datas_mods">
-                        <ng-container *ngIf="data_mod.id == modulo.id">
-                            <ion-list-header *ngFor="let data of data_mod.datas; let j = index" no-padding>
-                                <button ion-item (click)="paginaModulosTrabalhos(i, data)" class="child" detail-none>
-                                    {{ dataFormatada(data) }}
-                                </button>
-                            </ion-list-header>
-                        </ng-container>
-                    </ng-container>
+                    <ion-list-header *ngFor="let data of modulo.datas; let j = index" no-padding>
+                        <button ion-item (click)="paginaModulosTrabalhos(i, data)" class="child" detail-none>
+                            {{ data }}
+                        </button>
+                    </ion-list-header>
                 </ion-list>
             </ion-list-header>
         </ion-list>

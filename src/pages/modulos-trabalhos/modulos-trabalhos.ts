@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoadingController, AlertController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
 import { DataProvider } from "../../providers/data/data";
-import { DatePipe } from '@angular/common';
+import { ApiJaiProvider } from '../../providers/api-jai/api-jai';
 
 @Component({
     selector: 'page-modulos-trabalhos',
@@ -13,17 +11,17 @@ import { DatePipe } from '@angular/common';
 export class ModulosTrabalhosPage {
     dataSelect: any;
     moduloSelect: any;
-    trabalhosModulo: Observable<any>;
     listaTrabalhosModulo: any[];
     listaTrabalhosBkp: any[];
     horasInicio: any;
     segmentData: string;
     public listaFavoritos: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, 
-        public data: DataProvider, public datepipe: DatePipe, 
+    constructor(public navCtrl: NavController, public navParams: NavParams, 
+        public data: DataProvider, 
         private loadingCtrl: LoadingController, 
-        private alertCtrl: AlertController) {
+        private alertCtrl: AlertController,
+        private apiJai: ApiJaiProvider) {
         this.listaFavoritos = this.data.paramData;
         this.dataSelect = this.navParams.data.dataSelect;
         this.moduloSelect = this.navParams.data.moduloSelect;
@@ -32,43 +30,62 @@ export class ModulosTrabalhosPage {
             content: "Carregando...",
         });
 
-        const url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" + 
-                    this.dataSelect + "&modulo=" + this.moduloSelect.id;
+        //const url = "https://api-jai.herokuapp.com/jai/avaliacaoRest/findTrabalhosModulo?data=" + 
+        //            this.dataSelect + "&modulo=" + this.moduloSelect.id;
 
         //this.displayError(loader, url);
-        this.getTrabalhosModulo(url, loader);
+        this.getTrabalhosModulo(loader);
     }
 
-    getTrabalhosModulo(url, loader) {
+    getTrabalhosModulo(loader) {
         this.horasInicio = [];
         this.listaTrabalhosBkp = [];
         this.listaTrabalhosModulo = [];
         loader.present();
-        this.trabalhosModulo = this.http.get(url);
-        this.trabalhosModulo.subscribe(info => {
-            for (let trabalho of info.trabalhos) {
+        this.apiJai.getTrabalhos(this.dataSelect, this.moduloSelect.nome).then((trabalhos:any) => {
+            console.log(trabalhos);
+            for(let trabalhoArray of trabalhos) {
+                let trabalho = {
+                    trabalho: {
+                        agrupador: trabalhoArray[12].split(' - ')[0],
+                        apresentacao: {
+                            data: trabalhoArray[7],
+                            hora: trabalhoArray[8],
+                            predio: trabalhoArray[9],
+                            sala: trabalhoArray[10]
+                        },
+                        apresentador: trabalhoArray[4],
+                        evento: trabalhoArray[6],
+                        id: trabalhoArray[2],
+                        modulo: trabalhoArray[12].split(' - ')[1],
+                        orientador: trabalhoArray[5],
+                        titulo: trabalhoArray[3]
+                    }
+                };
+                console.log(trabalho);
+                this.addHora(trabalho);
                 this.setaFavoritos(trabalho);
                 this.listaTrabalhosModulo.push(trabalho);
-                this.addHora(trabalho); 
+
             }
             this.listaTrabalhosBkp = this.listaTrabalhosModulo;
-            if (this.listaTrabalhosModulo.length > 0) {
-                loader.dismiss().catch(() => {});
-            }
             this.horasInicio.sort(function(a, b) {
                 var a_ = +a.slice(0,2)
                 var b_ = +b.slice(0,2)
                 return +a_ - +b_;
             });
             this.segmentData = this.horasInicio[0];
-        }, error => {
+            if(this.listaTrabalhosModulo.length > 0) {
+                loader.dismiss().catch(() => {});
+            }
+        }, err => {
             console.log("ERRO: ocorreu um problema com o GET");
             loader.dismiss().catch(() => {});
-            this.displayError(loader, url);
+            this.displayError(loader);
         });
     }
 
-    displayError(loader, url) {
+    displayError(loader) {
         let alert = this.alertCtrl.create({
             title: 'Ocorreu um erro!',
             subTitle: 'Verifique a sua conexão com a internet e pressione OK para recarregar a página.',
@@ -76,7 +93,7 @@ export class ModulosTrabalhosPage {
             {
                 text: "OK",
                 handler: () => {
-                    this.getTrabalhosModulo(url, loader);
+                    this.getTrabalhosModulo(loader);
                 }
             }]
         });
@@ -87,12 +104,8 @@ export class ModulosTrabalhosPage {
         this.segmentData = hora;
     }
 
-    dataFormatada(data) {
-        return this.datepipe.transform(data, 'dd/MM');
-    }
-
     getHoraInicioTrabalho(trab) {
-        return trab.trabalho.apresentacao.data.slice(11,16);
+        return trab.trabalho.apresentacao.hora.slice(0,5);
     }
     
     addHora(trab) {
@@ -119,7 +132,7 @@ export class ModulosTrabalhosPage {
     }
 
     getDataTrabalho(trab) {
-        return trab.trabalho.apresentacao.data.slice(0,10);
+        return trab.trabalho.apresentacao.data;
     }
 
     setaFavoritos(trab) {
