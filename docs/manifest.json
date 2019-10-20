@@ -1,0 +1,13 @@
+{
+  "name": "JAI 2018",
+  "short_name": "JAI 2018",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/ufsm.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#FFFFFF",
+  "theme_color": "#204C90"
+}
