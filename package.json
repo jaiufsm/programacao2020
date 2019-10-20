@@ -5,6 +5,7 @@
   "homepage": "http://ionicframework.com/",
   "private": true,
   "config": {
+    "ionic_www_dir": "docs",
     "ionic_build_dir": "docs"
   },
   "scripts": {
