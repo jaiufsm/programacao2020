@@ -39,7 +39,7 @@ export class ApiJaiProvider {
 
   private filterTrabalhos(dia, modulo) {
     return this.trabalhos.filter(trabalho => {
-      return trabalho[12].includes(modulo) && trabalho[7] == dia;
+      return trabalho[12].split(' - ')[1] === modulo && trabalho[7] == dia;
     });
   }
 
