@@ -40,6 +40,8 @@
     "typescript": "~2.6.2",
     "zone.js": "0.8.26"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@ionic/lab": "3.2.9"
+  },
   "description": "An Ionic project"
 }
