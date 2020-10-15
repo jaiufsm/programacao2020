@@ -62,6 +62,22 @@ export class ApiJaiProvider {
     
   }
 
+  public getTodosTrabalhos(){
+    const promise = new Promise((resolve, reject) => {
+      if(this.trabalhos != null) {
+        resolve(this.trabalhos);
+      } else {
+        this.getTrabalhosApi().then(trabalhos => {
+          this.trabalhos = trabalhos;
+          resolve(this.trabalhos);
+        }).catch(err => {
+          reject(err);
+        });
+      }
+    });
+    return promise;
+  }
+
   public getModulos() {
     const params = new URLSearchParams();
     params.append('type', 'getModulos');

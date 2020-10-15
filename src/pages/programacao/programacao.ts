@@ -19,6 +19,8 @@ export class ProgramacaoPage {
     listaEventos: any[];
     public listaPalestrasFavs: any;
     public listaEventosFavs: any;
+    public listaTrabalhos: any[];
+    public listaTrabalhosFilter: any[];
 
     constructor(public navCtrl: NavController, 
         public data: DataProvider, public navParams: NavParams, 
@@ -38,6 +40,10 @@ export class ProgramacaoPage {
         this.getAgrupadores(loader);
         this.getPalestras();
         this.getEventos();
+
+        this.apiJai.getTodosTrabalhos().then((trabalhos: any[]) => {
+            this.listaTrabalhos = trabalhos;
+        });
     }
 
     getAgrupadores(loader) {
@@ -149,5 +155,63 @@ export class ProgramacaoPage {
     ionViewWillLeave() {
         this.data.paramData2 = this.listaPalestrasFavs;
         this.data.paramData3 = this.listaEventosFavs;
+    }
+
+    getTrabalhos(e: any) {
+        //this.apiJai.getTodosTrabalhos().then((trabalhos: any[]) => {
+        //    console.log(trabalhos);
+        //    this.listaTrabalhos = trabalhos;
+            let filtro = e.target.value;
+            if (filtro && filtro.trim() != '' && filtro.length > 0) {
+                let filtroLC = filtro.toLowerCase();
+                this.listaTrabalhosFilter = this.listaTrabalhos.filter((item) => {
+                    return (this.getTituloTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                    || this.getPredioTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                    || this.getSalaTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                    || this.getApresentadorTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                    || this.getAvaliadorTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                    || this.getModuloTrabalho(item).toLowerCase().indexOf(filtroLC) > -1
+                    || this.getDataTrabalho(item).toLowerCase().indexOf(filtroLC) > -1)
+                });
+            } else {
+                this.listaTrabalhosFilter = undefined;
+            }
+        //});
+    }
+
+    getTituloTrabalho(trab) {
+        return trab[3];
+    }
+
+    getApresentadorTrabalho(trab) {
+        return trab[4];
+    }
+
+    getPredioTrabalho(trab) {
+        return trab[9];
+    }
+
+    getSalaTrabalho(trab) {
+        return String(trab[10]);
+    }
+
+    getDataTrabalho(trab) {
+        return trab[7];
+    }
+
+    getModuloTrabalho(trab) {
+        return trab[12];
+    }
+
+    getAvaliadorTrabalho(trab) {
+        return trab[0];
+    }
+
+    getEventoTrabalho(trab) {
+        return trab[6];
+    }
+
+    getHoraInicioTrabalho(trab) {
+        return trab[8].slice(0,5);
     }
 }

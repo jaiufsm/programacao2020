@@ -14,9 +14,27 @@
     </div>
     <div [ngSwitch]="segmentData">
         <ion-list *ngSwitchCase="'Modulos'">
-            <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">
-                {{ agrupador.nome  }}
-            </button>
+            <ion-searchbar placeholder="Pesquisar trabalhos..." (ionInput)="getTrabalhos($event)"></ion-searchbar>
+            <ng-container *ngIf="listaTrabalhosFilter">
+                <ion-card ion-item *ngFor="let trab of listaTrabalhosFilter">
+                    <ion-card-content>
+                        <h3 text-wrap> {{ getTituloTrabalho(trab) }} </h3>
+                        <p text-wrap> &mdash; {{ getApresentadorTrabalho(trab) }} </p>
+                        <p text-wrap> Evento: {{ getEventoTrabalho(trab) }} </p>
+                        <p text-wrap> Horário: {{ getHoraInicioTrabalho(trab) }} </p>
+                        <p text-wrap> Prédio/Local: {{ getPredioTrabalho(trab) }} </p>
+                        <p text-wrap> Sala/Painel: {{ getSalaTrabalho(trab) }} </p>
+                    </ion-card-content>
+                    <button ion-button clear icon-only item-end (click)="favorito(trab, $event)">
+                        <ion-icon color="danger" [name]="trab.favorito ? 'heart' : 'heart-outline'"></ion-icon>
+                    </button>
+                </ion-card>
+            </ng-container>
+            <ng-container *ngIf="!listaTrabalhosFilter">
+                <button ion-item *ngFor="let agrupador of listaAgrupadores" (click)="paginaModulos(agrupador)">
+                    {{ agrupador.nome  }}
+                </button>
+            </ng-container>   
         </ion-list>
         <ion-list *ngSwitchCase="'Palestras'">
             <ion-item-group *ngFor="let data of listaDatas">
